@@ -8,6 +8,13 @@ import { Observable } from 'rxjs';
 /*
  * BookAPI Service wraps communication to and from web api via HTTP
  */
+
+enum QueryValues {
+  Cust_Id =1 ,
+   SSN=2,
+   Acct_Id=3
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -45,8 +52,8 @@ export class AccountService {
   }
 
  // Get one Account (5.2.1) 
-  getAccount(Cust_Id: number): Observable<Account> {
-    return this.httpClient.get<Account>(`${this.apiEndpoint.getAccount}${Cust_Id}`);
+  getAccount(QueryValue: QueryValues,id:number): Observable<Account> {
+    return this.httpClient.get<Account>(`${this.apiEndpoint.getAccount}${QueryValue}/${id}`);
   }
 
  // Delete one Account (5.1.6)
