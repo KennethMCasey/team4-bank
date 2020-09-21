@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "team4-kmc"
+    }
+  },
+  "defaultProject": "team4-kmc",
+  "cli": {
+    "analytics": "9a214df9-e06e-4c9b-8e1a-2565044137a5"
+  }
 }
