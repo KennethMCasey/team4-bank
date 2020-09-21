@@ -1,0 +1,69 @@
+Endpoints:
+---------------------------------------
+
+[get] (5.1.1)
+https://banks4you.com/api/auth???
+---------------------------------------
+---------------------------------------
+
+[post] (5.1.2) add one customer
+[get] (5.1.7) get all customers
+
+https://banks4you.com/api/Customers
+---------------------------------------
+---------------------------------------
+
+
+[delete] (5.1.4) delete one customer
+[put] (5.1.3) edit one customer
+[get] (might be useful) get one customer
+
+https://banks4you.com/api/Customers/{customer-id}
+---------------------------------------
+---------------------------------------
+
+[post] (5.1.5) add one Account
+[get] (5.1.8) (5.2.1) get all Accounts
+
+https://banks4you.com/api/Accounts
+---------------------------------------
+---------------------------------------
+
+[get] (5.2.1) get one or more accounts
+[delete] (5.1.6) delete one or more accounts
+
+https://banks4you.com/api/Accounts/{query-type}/{param}
+
+Query-type = Account Id (aid) || Social Security Number (ssn) || Customer Id (cid)
+Param = value for query type
+
+Example:
+https://banks4you.com/api/Accounts/ssn/8904384
+https://banks4you.com/api/Accounts/cid/7
+https://banks4you.com/api/Accounts/aid/666
+---------------------------------------
+---------------------------------------
+
+[post] (5.2.2) (5.2.3) (5.2.4) add one transaction
+
+https://banks4you.com/api/Transactions
+---------------------------------------
+---------------------------------------
+
+[get](5.2.5) gets one or more transactions
+
+https://banks4you.com/api/Transactions/{Account-Id}/{Filter-Type}/{Param1}/{Param2}
+
+Filter-type = number of recent transactions (num) || custom date (date)
+Param1 = start number or start date 
+Param2 = end number or end date
+
+Example:
+https://banks4you.com/api/Transactions/003846/num/5/15
+https://banks4you.com/api/Transactions/003846/date/05-25-2020/15
+
+---------------------------------------
+---------------------------------------
+
+
+
