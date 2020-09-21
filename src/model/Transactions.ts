@@ -1,8 +1,8 @@
 export class Transactions 
 {
-    Cust_Id:number
-	Amount:number
-	Tran_Date:Date
-	Source_Acct :number
-	Target_Acct :number
+    public Cust_Id:number
+	public Amount:number
+	public Tran_Date:Date
+	public Source_Acct :number
+	public Target_Acct :number
 }

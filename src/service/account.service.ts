@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
  * BookAPI Service wraps communication to and from web api via HTTP
  */
 
-enum QueryValues {
+export enum QueryValues {
   Cust_Id =1 ,
    SSN=2,
    Acct_Id=3
