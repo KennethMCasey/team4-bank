@@ -5,9 +5,7 @@ import { environment } from '../environments/environment';
 import { BankApiEndpoint } from '../model/BankApiEndpoint';
 import { Observable } from 'rxjs';
 
-/*
- * BookAPI Service wraps communication to and from web api via HTTP
- */
+
 @Injectable({
   providedIn: 'root',
 })
@@ -41,7 +39,7 @@ export class CustomerService {
 
  // Get all Customers (5.1.7)
   getCustomers() {
-    return this.httpClient.get(this.apiEndpoint.Customers);
+    return this.httpClient.get<Customer[]>(this.apiEndpoint.Customers);
   }
 
  // Get one Customeer () 

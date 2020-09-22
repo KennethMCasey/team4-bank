@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
  * BookAPI Service wraps communication to and from web api via HTTP
  */
 
-export enum QueryValues {
+export enum QueryValues 
+{
   Cust_Id =1 ,
    SSN=2,
    Acct_Id=3
@@ -37,22 +38,13 @@ export class AccountService {
     );
   }
 
-  /*Edit one customer (5.1.3)
-  editCustomer(putCustomer) {
-    return this.httpClient.put(
-      `${this.apiEndpoint.editCustomer}${putCustomer.Cust_Id}`,
-      putCustomer,
-      this.defaultOptions
-    );
-  }*/
-
  // Get all Account (5.1.8) (5.2.1)
   getAccounts() {
-    return this.httpClient.get(this.apiEndpoint.Accounts);
+    return this.httpClient.get<Account[]>(this.apiEndpoint.Accounts);
   }
 
  // Get one Account (5.2.1) 
-  getAccount(QueryValue: QueryValues, id:number): Observable<Account> {
+  getAccount(QueryValue: QueryValues,id:number): Observable<Account> {
     return this.httpClient.get<Account>(`${this.apiEndpoint.Accounts}${QueryValue}/${id}`);
   }
 
