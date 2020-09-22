@@ -5,18 +5,21 @@ import {AccountMasterComponent} from 'src/app/Executive/Account-Master/account-m
 import {CustomerCreateComponent} from 'src/app/Executive/Customer-Create/customer-create.component'
 import {CustomerMasterComponent} from 'src/app/Executive/Customer-Master/customer-master.component'
 import {CustomerUpdateComponent} from 'src/app/Executive/Customer-Update/customer-update.component'
-import {LoginComponent} from 'src/app/Login/login.component'
+import {LoginComponent} from 'src/app/Auth/Login/login.component'
 import {AccountDepositComponent} from 'src/app/Teller/Account-Deposit/account-deposit.component'
 import {AccountDetailsComponent} from 'src/app/Teller/Account-Details/account-details.component'
 import {AccountStatementComponent} from 'src/app/Teller/Account-Statement/account-statement.component'
 import {AccountTransferComponent} from 'src/app/Teller/Account-Transfer/account-transfer.component'
 import {AccountWithdrawComponent} from 'src/app/Teller/Account-Withdraw/account-withdraw.component'
 import {HomeComponent} from 'src/app/Home/home.component'
+import {SignupComponent} from 'src/app/Auth/Sign-Up/signup.component'
+import { from } from 'rxjs';
 
 
 const routes: Routes = 
 [
   {path:'Login', component:LoginComponent},
+  {path:'Sign-Up', component:SignupComponent},
   {path:'', component:HomeComponent},
 
   {path:'Teller', component:AccountDetailsComponent},
