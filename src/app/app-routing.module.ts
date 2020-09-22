@@ -6,7 +6,7 @@ import {CustomerCreateComponent} from 'src/app/Executive/Customer-Create/custome
 import {CustomerMasterComponent} from 'src/app/Executive/Customer-Master/customer-master.component'
 import {CustomerUpdateComponent} from 'src/app/Executive/Customer-Update/customer-update.component'
 import {LoginComponent} from 'src/app/Login/login.component'
-import {AccountDepositeComponent} from 'src/app/Teller/Account-Deposit/account-deposite.component'
+import {AccountDepositComponent} from 'src/app/Teller/Account-Deposit/account-deposit.component'
 import {AccountDetailsComponent} from 'src/app/Teller/Account-Details/account-details.component'
 import {AccountStatementComponent} from 'src/app/Teller/Account-Statement/account-statement.component'
 import {AccountTransferComponent} from 'src/app/Teller/Account-Transfer/account-transfer.component'
@@ -18,7 +18,7 @@ const routes: Routes =
   {path:'Login', component:LoginComponent},
 
   {path:'Teller', component:AccountDetailsComponent},
-  {path:'Teller/Deposite/:id', component:AccountDepositeComponent},
+  {path:'Teller/Deposit/:id', component:AccountDepositComponent},
   {path:'Teller/Statement', component:AccountStatementComponent},
   {path:'Teller/Transfer/:id', component:AccountTransferComponent},
   {path:'Teller/Withdraw/:id', component:AccountWithdrawComponent},

@@ -24,7 +24,7 @@ export class TransactionService {
   //Add a Account (5.2.2)(5.2.3)(5.2.4)
   addTransaction(postTransaction) {
     return this.httpClient.post(
-      this.apiEndpoint.addTransaction,
+      this.apiEndpoint.Transactions,
       postTransaction,
       this.defaultOptions
     );
@@ -39,9 +39,11 @@ export class TransactionService {
     );
   }*/
 
- // Get all Account (5.1.8) (5.2.1)
-  getTransactions() {
-    return this.httpClient.get(this.apiEndpoint.getTransactions);
+  //https://banks4you.com/api/Transactions/{Account-Id}/{Filter-Type}/{Param1}/{Param2}
+ // Get all Account (5.2.5)
+  getTransactions(accountId: number, paramOne: any, paramTwo: any) {
+    var filterType = (paramOne instanceof Number) ? "num":"date"
+    return this.httpClient.get(`${this.apiEndpoint.Transactions}${accountId}/${filterType}/${paramOne}/${paramTwo}`);
   }
 
  /*Get one Account (5.2.1) 

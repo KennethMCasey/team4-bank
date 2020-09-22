@@ -24,7 +24,7 @@ export class CustomerService {
   //Add a Customer (5.1.2)
   addCustomer(postCustomer) {
     return this.httpClient.post(
-      this.apiEndpoint.addCustomer,
+      this.apiEndpoint.Customers,
       postCustomer,
       this.defaultOptions
     );
@@ -33,7 +33,7 @@ export class CustomerService {
   //Edit one customer (5.1.3)
   editCustomer(putCustomer) {
     return this.httpClient.put(
-      `${this.apiEndpoint.editCustomer}${putCustomer.Cust_Id}`,
+      `${this.apiEndpoint.Customers}${putCustomer.Cust_Id}`,
       putCustomer,
       this.defaultOptions
     );
@@ -41,16 +41,16 @@ export class CustomerService {
 
  // Get all Customers (5.1.7)
   getCustomers() {
-    return this.httpClient.get(this.apiEndpoint.getCustomers);
+    return this.httpClient.get(this.apiEndpoint.Customers);
   }
 
  // Get one Customeer () 
   getCustomer(Cust_Id: number): Observable<Customer> {
-    return this.httpClient.get<Customer>(`${this.apiEndpoint.getCustomer}${Cust_Id}`);
+    return this.httpClient.get<Customer>(`${this.apiEndpoint.Customers}${Cust_Id}`);
   }
 
  // Delete one customer (5.1.4)
   deleteCustomer(Cust_Id: number) {
-    return this.httpClient.delete(`${this.apiEndpoint.deleteCustomer}${Cust_Id}`);
+    return this.httpClient.delete(`${this.apiEndpoint.Customers}${Cust_Id}`);
   }
 }

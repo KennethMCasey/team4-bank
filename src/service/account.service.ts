@@ -31,7 +31,7 @@ export class AccountService {
   //Add a Account (5.1.5)
   addAccount(postAccount) {
     return this.httpClient.post(
-      this.apiEndpoint.addAccount,
+      this.apiEndpoint.Accounts,
       postAccount,
       this.defaultOptions
     );
@@ -48,16 +48,16 @@ export class AccountService {
 
  // Get all Account (5.1.8) (5.2.1)
   getAccounts() {
-    return this.httpClient.get(this.apiEndpoint.getAccounts);
+    return this.httpClient.get(this.apiEndpoint.Accounts);
   }
 
  // Get one Account (5.2.1) 
-  getAccount(QueryValue: QueryValues,id:number): Observable<Account> {
-    return this.httpClient.get<Account>(`${this.apiEndpoint.getAccount}${QueryValue}/${id}`);
+  getAccount(QueryValue: QueryValues, id:number): Observable<Account> {
+    return this.httpClient.get<Account>(`${this.apiEndpoint.Accounts}${QueryValue}/${id}`);
   }
 
  // Delete one Account (5.1.6)
   deleteAccount(Cust_Id: number) {
-    return this.httpClient.delete(`${this.apiEndpoint.deleteAccount}${Cust_Id}`);
+    return this.httpClient.delete(`${this.apiEndpoint.Accounts}${Cust_Id}`);
   }
 }
