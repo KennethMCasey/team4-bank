@@ -24,7 +24,7 @@ namespace BankProject.Repository
         public Customer AddCustomer(Customer customer)
         {
             _context.Customer.Add(customer);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return customer;
         }
@@ -132,7 +132,7 @@ namespace BankProject.Repository
         {
             var customer = _context
                 .Customer
-                    .Include("Accounts")
+                    .Include("Account")
                     .FirstOrDefault(c => c.CustId == customerId);
 
             if (customer == null || customer.Account == null)
@@ -171,6 +171,8 @@ namespace BankProject.Repository
         /* Transaction Controls */
         public Transactions AddTransaction(Transactions transaction)
         {
+            _context.Add(transaction);
+            _context.SaveChanges();
             // transfer
             if (transaction.TargetAcct != null)
             {

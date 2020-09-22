@@ -15,13 +15,13 @@ CREATE TABLE Customer(
 	Name varchar(50),
 	Address varchar(100), 
 	Age numeric(3),
-	CONSTRAINT identity_Chk
+	CONSTRAINT customer_identity_Chk
 			CHECK (Cust_Id < 1000000000 and Cust_Id >= 100000000)
 );
 
 DROP TABLE IF EXISTS Account
 CREATE TABLE Account(
-	Acct_Id int IDENTITY(1,1) PRIMARY KEY, 
+	Acct_Id int IDENTITY(100000000,1) PRIMARY KEY, 
 	Cust_Id int NOT NULL
         FOREIGN KEY references Customer(Cust_Id)
         ON DELETE CASCADE, 
@@ -34,11 +34,14 @@ CREATE TABLE Account(
         CONVERT(VARCHAR(20), CONVERT(datetime, SYSUTCDATETIME()) - CR_Date, 114),
         1, 2, 
         DATEDIFF(hh, 0, CONVERT(datetime, SYSUTCDATETIME())  - CR_Date)
-    )
+    ),
+	CONSTRAINT account_identity_Chk
+			CHECK (Acct_Id < 1000000000 and Acct_Id >= 100000000)
 );
 
 DROP TABLE IF EXISTS Transactions
 CREATE TABLE Transactions(
+	T_Id int PRIMARY KEY IDENTITY(1,1),
 	Cust_Id int NOT NULL
         FOREIGN KEY references Customer(Cust_Id)
         ON DELETE CASCADE,

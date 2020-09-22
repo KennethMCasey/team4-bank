@@ -9491,6 +9491,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.AspNetCore.Identity >= 2.2.0",
+      "Microsoft.EntityFrameworkCore >= 3.1.8",
       "Microsoft.EntityFrameworkCore.Design >= 3.1.8",
       "Microsoft.EntityFrameworkCore.Relational >= 3.1.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.8",
@@ -9500,24 +9501,26 @@
     ]
   },
   "packageFolders": {
-    "/home/max/.nuget/packages/": {}
+    "C:\\Users\\Vincent\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/max/tcs/dotnet/team4-bank/team4-bank/BankProject/BankProject/BankProject.csproj",
+      "projectUniqueName": "C:\\Users\\Vincent\\Documents\\GitHub\\team4-bank\\BankProject\\BankProject\\BankProject.csproj",
       "projectName": "BankProject",
-      "projectPath": "/home/max/tcs/dotnet/team4-bank/team4-bank/BankProject/BankProject/BankProject.csproj",
-      "packagesPath": "/home/max/.nuget/packages/",
-      "outputPath": "/home/max/tcs/dotnet/team4-bank/team4-bank/BankProject/BankProject/obj/",
+      "projectPath": "C:\\Users\\Vincent\\Documents\\GitHub\\team4-bank\\BankProject\\BankProject\\BankProject.csproj",
+      "packagesPath": "C:\\Users\\Vincent\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Vincent\\Documents\\GitHub\\team4-bank\\BankProject\\BankProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/max/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Vincent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -9537,6 +9540,10 @@
           "Microsoft.AspNetCore.Identity": {
             "target": "Package",
             "version": "[2.2.0, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[3.1.8, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -9585,7 +9592,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.107/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

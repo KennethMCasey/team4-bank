@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace BankProject.Models
 {
@@ -8,15 +9,18 @@ namespace BankProject.Models
         public Customer()
         {
             Account = new HashSet<Account>();
+            Transactions = new HashSet<Transactions>();
         }
 
-        public string Ssn { get; set; }
         public int CustId { get; set; }
+        public string Ssn { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public decimal? Age { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Account> Account { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Transactions> Transactions { get; set; }
     }
 }

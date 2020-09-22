@@ -5,9 +5,10 @@ namespace BankProject.Models
 {
     public partial class Transactions
     {
-        public int? CustId { get; set; }
-        public decimal? Amount { get; set; }
-        public DateTime? TranDate { get; set; }
+        public int TId { get; set; }
+        public int CustId { get; set; }
+        public decimal Amount { get; set; }
+        public DateTime TranDate { get; set; }
         public int SourceAcct { get; set; }
         public int? TargetAcct { get; set; }
 

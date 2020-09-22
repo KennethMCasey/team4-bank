@@ -22,6 +22,17 @@ namespace BankProject.Controllers
             _repo = context;
         }
 
+        // POST: api/Accounts
+        [HttpPost]
+        public ActionResult<Account> PostAccount(CreateAccountModel accountCreate)
+        {
+            Account account = new Account(accountCreate.CustId, accountCreate.AcctType, accountCreate.Balance);
+
+            Account acc = _repo.AddAccount(account);
+
+            return CreatedAtAction("GetAccountsByCustomerId", new { cid = acc.CustId }, acc);
+        }
+
         // GET: api/Accounts
         // https://banks4you.com/api/Accounts
         [HttpGet]
@@ -38,7 +49,7 @@ namespace BankProject.Controllers
         }
 
         // https://banks4you.com/api/Accounts/cid/7
-        [HttpGet("cid/{cid:range(MIN_ID, MAX_ID)}")]
+        [HttpGet("cid/{cid:range(100000000, 1000000000)}")]
         public IEnumerable<Account> GetAccountsByCustomerId(int cid)
         {
             return _repo.GetAccountsByCustomerId(cid);
@@ -53,7 +64,7 @@ namespace BankProject.Controllers
         }
 
         // DELETE api/Accounts/aid/888
-        [HttpDelete("aid/{aid:range(100000000, 1000000000)}")]
+        [HttpDelete("aid/{aid}")]
         public ActionResult<Account> DeleteAccountByAccountId(int aid)
         {
             var account = _repo.DeleteAccountByAccountId(aid);
@@ -66,23 +77,16 @@ namespace BankProject.Controllers
 
 
         // PUT: api/Accounts/5
-        [HttpPut("{id}")]
-        public IActionResult PutAccount(int id, Account account)
+        [HttpPut("{aid}")]
+        public IActionResult PutAccount(int aid, Account account)
         {
-            int retCode = _repo.UpdateAccount(id, account);
+            int retCode = _repo.UpdateAccount(aid, account);
             if (retCode != 0) // error
                 return NotFound();
             return NoContent();
         }
 
-        // POST: api/Accounts
-        [HttpPost]
-        public ActionResult<Account> PostAccount(Account account)
-        {
-            Account acc = _repo.AddAccount(account);
-
-            return CreatedAtAction("GetAccount", new { id = acc.AcctId }, acc);
-        }
+      
 
         /* Private Helpers and Constants */
     }

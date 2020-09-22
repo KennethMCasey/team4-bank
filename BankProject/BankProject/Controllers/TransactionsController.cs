@@ -27,14 +27,15 @@ namespace BankProject.Controllers
             try {
                  _repo.AddTransaction(transaction);
                 return NoContent();
-            } catch {
+            } catch(Exception e) {
+                Console.WriteLine(e.Message);
                 return StatusCode(500);
             }
            
         }
 
         //https://banks4you.com/api/Transactions/{Account-Id}/num/{Param1}
-        [HttpGet("{aid:range(MIN_ID, MAX_ID)}/num/{n:range(1,10)}")]
+        [HttpGet("{aid:range(100000000, 1000000000)}/num/{n:range(1,10)}")]
         public ActionResult<IEnumerable<Transactions>> GetLastN(int aid, int n)
         {
             var transactions = _repo.GetLastNTransactions(aid, n);
@@ -46,7 +47,7 @@ namespace BankProject.Controllers
         }
 
         //https://banks4you.com/api/Transactions/{Account-Id}/date/{Param1}/{Param2}
-        [HttpGet("{aid:range(MIN_ID, MAX_ID)}/date/{startDate:datetime}/{endDate:datetime}")]
+        [HttpGet("{aid:range(100000000, 1000000000)}/date/{startDate:datetime}/{endDate:datetime}")]
         public ActionResult<IEnumerable<Transactions>> GetTransactionsInDateRange(int aid, DateTime startDate, DateTime endDate)
         {
             var transactions = _repo.GetTransactionsInDateRange(aid, startDate, endDate);
