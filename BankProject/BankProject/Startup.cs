@@ -34,6 +34,8 @@ namespace BankProject
             services.AddControllers();
             services.AddScoped<IBankRepo, BankRepo>();
             services.AddDbContext<Team4_BankDBContext>(opt => opt.UseSqlServer(connString));
+            services.AddDbContext<UserDbContext>(opt => opt.UseSqlServer(connString));
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<UserDbContext>().AddDefaultTokenProviders();
         }
     
     
