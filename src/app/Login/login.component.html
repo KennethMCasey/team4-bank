@@ -1,2 +1,70 @@
-<h1>Login Component</h1>
-<p>This is where the user will go to log in to our application. They can also go and make a new account.</p>
+<!-- NavBar-->
+<nav class="blue-grey">
+    <div class="nav-wrapper">
+    <a href="#" class="brand-logo center">Team4-Bank</a>
+    </div>
+    </nav>
+    <!--
+    <div class="container">
+      <div class="row">
+        <div class="col s8 offset-s2">
+          <div class="card grey lighten-2">
+            <div class="card-tabs">
+              <ul class="tabs tabs-fixed-width tabs-transparent">
+                <li class="tab">
+                  <a routerLink='/login' routerLinkActive='active'>Sign In</a>
+                </li>
+                <li class="tab">
+                  <a  routerLink='/signup' routerLinkActive='active'>Sign Up</a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-content white">
+              <div class="row">
+                <router-outlet></router-outlet>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>-->
+    <!--Login-->
+    <div class="brand-logo center">
+    <h3>Login</h3>
+    </div>
+    <div class="container">
+    <div class="col s6 offset-s3">
+    <div class="card">
+    
+    <!--<div class="col s6">
+     <img src="/assets/img/download.jpeg",style="width:25px;height:25px;" class="offset - s3">
+    </div>-->
+    <div class="card-content">
+    <form #registerForm="ngForm">
+    <div class="row">
+    <div class="input-field col s12">
+    <!-- <i class="material-icons.prefix"> mail_outline </i>--> 
+    <input type="text" name="Email" #Email ngModel required [pattern]="emailPattern">
+    <label> Email</label>
+    </div>
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
+    <!--<i class="material-icons.prefix"> account_circle </i> -->
+    <input type="Password" name="Password" #Password ngModel required>
+    <label> Password</label>
+    </div>
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
+    <button class="btn-large btn-submit" type="submit" [disabled]="!registerForm.valid">Submit</button>
+    <h6 style="text-align:center">If you don't have account?  <a href="">Sign Up Here</a> </h6>
+      <br>
+      <br>
+    </div>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>

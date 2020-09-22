@@ -15,6 +15,9 @@ import {AccountDetailsComponent} from 'src/app/Teller/Account-Details/account-de
 import {AccountStatementComponent} from 'src/app/Teller/Account-Statement/account-statement.component'
 import {AccountTransferComponent} from 'src/app/Teller/Account-Transfer/account-transfer.component'
 import {AccountWithdrawComponent} from 'src/app/Teller/Account-Withdraw/account-withdraw.component'
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { HomeComponent } from './Home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: 
@@ -30,12 +33,17 @@ import {AccountWithdrawComponent} from 'src/app/Teller/Account-Withdraw/account-
     AccountDetailsComponent,
     AccountStatementComponent,
     AccountTransferComponent,
-    AccountWithdrawComponent
+    AccountWithdrawComponent,
+    HomeComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
-    
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

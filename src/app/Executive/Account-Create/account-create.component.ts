@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AccountService} from 'src/service/account.service'
 import {Router} from '@angular/router'
+import { FormGroup, FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,17 @@ import {Router} from '@angular/router'
 export class AccountCreateComponent
 
 {
+form: FormGroup
+
   public account:Account
 
   constructor(private accountService:AccountService, private router:Router) 
-  {}
+  
+  {
+      this.form = new FormGroup({
+        Acct_Type: new FormControl('', Validators.required)
+      });
+  }
 
   public postAccount() 
   {
