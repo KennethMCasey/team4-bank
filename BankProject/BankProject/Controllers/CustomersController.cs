@@ -10,12 +10,13 @@ using BankProject.Repository;
 
 namespace BankProject.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CustomersController : ControllerBase
     {
         private readonly IBankRepo _repo;
-
+        
+        /* Constructor */
         public CustomersController(IBankRepo repo)
         {
             _repo = repo;
@@ -27,6 +28,16 @@ namespace BankProject.Controllers
         {
             return _repo.GetCustomers();
         }
+
+        // POST: api/Customers
+        [HttpPost]
+        public ActionResult<Customer> PostCustomer(Customer customer)
+        {
+            Customer cust = _repo.AddCustomer(customer);
+
+            return CreatedAtAction("GetCustomer", new { id = cust.CustId }, cust);
+        }
+        
 
         // GET: api/Customers/5
         [HttpGet("{id}")]
@@ -43,8 +54,6 @@ namespace BankProject.Controllers
         }
 
         // PUT: api/Customers/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public IActionResult PutCustomer(int id, Customer customer)
         {
@@ -53,17 +62,6 @@ namespace BankProject.Controllers
                 return NotFound();
 
             return NoContent();
-        }
-
-        // POST: api/Customers
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public ActionResult<Customer> PostCustomer(Customer customer)
-        {
-            Customer cust = _repo.AddCustomer(customer);
-
-            return CreatedAtAction("GetCustomer", new { id = cust.CustId }, cust);
         }
 
         // DELETE: api/Customers/5
@@ -77,7 +75,5 @@ namespace BankProject.Controllers
             }
             return customer;
         }
-
-
     }
 }

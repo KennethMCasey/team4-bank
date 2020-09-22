@@ -9,22 +9,27 @@ namespace BankProject.Repository
 {
     public interface IBankRepo
     {
+        /* Customer Controls */
         Customer AddCustomer(Customer customer);
+        int UpdateCustomer(int custId, Customer customer);
         Customer DeleteCustomer(int custId);
         Customer GetCustomer(int custId);
         IEnumerable<Customer> GetCustomers();
-        int UpdateCustomer(int custId, Customer customer);
 
-        IEnumerable<Transactions> GetTransactions(int id);
-        Transactions ExecuteTransaction(Transactions transactions);
-
+        /* Account Controls */
         Account AddAccount(Account account);
-        Account DeleteAccount(int acctId);
-        Account GetAccount(int acctId);
-        IEnumerable<Account> GetAccounts(int custId);
-        IEnumerable<Account> GetAccounts();
         int UpdateAccount(int acctId, Account account);
+        Account DeleteAccountByAccountId(int acctId);
+        Account GetAccountByAccountId(int acctId);
+        IEnumerable<Account> GetAccountsByCustomerId(int custId);
+        IEnumerable<Account> GetAccountsBySsn(string ssn);
+        IEnumerable<Account> GetAccounts();
 
+        /* Transaction Controls */
+        Transactions AddTransaction(Transactions transactions);
+        IEnumerable<Transactions> GetTransactionByAccountId(int aid);
+        IEnumerable<Transactions> GetLastNTransactions(int aid, int n);
+        IEnumerable<Transactions> GetTransactionsInDateRange(int aid, DateTime startDate, DateTime endDate); 
         
     }
 }

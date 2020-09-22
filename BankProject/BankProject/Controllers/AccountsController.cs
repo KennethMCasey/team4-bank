@@ -10,59 +10,72 @@ using BankProject.Repository;
 
 namespace BankProject.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/")]
     [ApiController]
     public class AccountsController : ControllerBase
     {
         private readonly IBankRepo _repo;
 
+        /* Constructor */
         public AccountsController(IBankRepo context)
         {
             _repo = context;
         }
 
         // GET: api/Accounts
-        [HttpGet("{id}")]
-        public IEnumerable<Account> GetAccounts(int id)
-        {
-            return _repo.GetAccounts(id);
-        }
+        // https://banks4you.com/api/Accounts
         [HttpGet]
-        // GET: api/Accounts
         public IEnumerable<Account> GetAccounts()
         {
             return _repo.GetAccounts();
         }
-        // GET: api/Accounts/5
-        [HttpGet("{id}")]
-        public ActionResult<Account> GetAccount(int id)
-        {
-            var account = _repo.GetAccount(id);
 
+        // https://banks4you.com/api/Accounts/ssn/8904384
+        [HttpGet("ssn/{ssn:length(9)}")]
+        public IEnumerable<Account> GetAccountsBySsn(string ssn)
+        {
+            return _repo.GetAccountsBySsn(ssn);
+        }
+
+        // https://banks4you.com/api/Accounts/cid/7
+        [HttpGet("cid/{cid:range(MIN_ID, MAX_ID)}")]
+        public IEnumerable<Account> GetAccountsByCustomerId(int cid)
+        {
+            return _repo.GetAccountsByCustomerId(cid);
+        }
+
+
+        // GET https://banks4you.com/api/Accounts/aid/888
+        [HttpGet("aid/{aid:range(100000000, 1000000000)}")]
+        public Account GetAccountByAccountId(int aid)
+        {
+            return _repo.GetAccountByAccountId(aid);
+        }
+
+        // DELETE api/Accounts/aid/888
+        [HttpDelete("aid/{aid:range(100000000, 1000000000)}")]
+        public ActionResult<Account> DeleteAccountByAccountId(int aid)
+        {
+            var account = _repo.DeleteAccountByAccountId(aid);
             if (account == null)
             {
                 return NotFound();
             }
-
             return account;
         }
 
+
         // PUT: api/Accounts/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public IActionResult PutAccount(int id, Account account)
         {
             int retCode = _repo.UpdateAccount(id, account);
             if (retCode != 0) // error
                 return NotFound();
-
             return NoContent();
         }
 
         // POST: api/Accounts
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public ActionResult<Account> PostAccount(Account account)
         {
@@ -71,17 +84,6 @@ namespace BankProject.Controllers
             return CreatedAtAction("GetAccount", new { id = acc.AcctId }, acc);
         }
 
-        // DELETE: api/Accounts/5
-        [HttpDelete("{id}")]
-        public ActionResult<Account> DeleteAccount(int id)
-        {
-            var account = _repo.DeleteAccount(id);
-            if (account == null)
-            {
-                return NotFound();
-            }
-            return account;
-        }
-
+        /* Private Helpers and Constants */
     }
 }

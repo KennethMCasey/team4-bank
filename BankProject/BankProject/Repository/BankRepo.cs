@@ -1,4 +1,5 @@
-﻿using BankProject.Models;
+﻿using System.Runtime;
+using BankProject.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,26 +10,16 @@ namespace BankProject.Repository
 {
     public class BankRepo : IBankRepo
     {
-        private enum ReturnCode
-        {
-            NO_CONTENT,
-            NOT_FOUND
-        }
-
+        
         private readonly Team4_BankDBContext _context;
 
+        /* Constructor */
         public BankRepo(Team4_BankDBContext context)
         {
             _context = context;
         }
 
-        public Account AddAccount(Account account)
-        {
-            _context.Account.Add(account);
-            _context.SaveChanges();
-
-            return account;
-        }
+        /* Customer Controls */
 
         public Customer AddCustomer(Customer customer)
         {
@@ -36,101 +27,6 @@ namespace BankProject.Repository
             _context.SaveChangesAsync();
 
             return customer;
-        }
-
-        public Account DeleteAccount(int acctId)
-        {
-            var account = _context.Account.Find(acctId);
-            if (account == null)
-            {
-                return null;
-            }
-
-            _context.Account.Remove(account);
-            _context.SaveChanges();
-            return account;
-        }
-
-        public Customer DeleteCustomer(int custId)
-        {
-            var customer = _context.Customer.Find(custId);
-            if (customer == null)
-            {
-                return null;
-            }
-
-            _context.Customer.Remove(customer);
-            _context.SaveChanges();
-            return customer;
-        }
-
-        public Transactions ExecuteTransaction(Transactions transaction)
-        {
-            if (transaction.TargetAcct != null)
-            {
-                var target = GetAccount((int)transaction.TargetAcct);
-                target.Balance -= transaction.Amount;
-            }
-            var source = GetAccount(transaction.SourceAcct);
-            source.Balance += transaction.Amount;
-
-            return transaction;
-        }
-
-        public IEnumerable<Transactions> GetTransactions(int id)
-        {
-            return _context.Transactions.Where(c => c.CustId.Equals(id)).AsEnumerable();
-        }
-        public IEnumerable<Account> GetAccounts()
-        {
-            return _context.Account.AsEnumerable();
-        }
-        public Account GetAccount(int acctId)
-        {
-            var account = _context.Account.Find(acctId);
-
-            if (account == null)
-            {
-                return null;
-            }
-
-            return account;
-        }
-
-        public IEnumerable<Account> GetAccounts(int custId)
-        {
-            return _context.Account.Where(c => c.CustId.Equals(custId)).AsEnumerable();
-        }
-
-        public Customer GetCustomer(int custId)
-        {
-            var customer = _context.Customer.Find(custId);
-
-            return customer;
-        }
-
-        public IEnumerable<Customer> GetCustomers()
-        {
-            return _context.Customer.ToList();
-        }
-
-        public int UpdateAccount(int acctId, Account account)
-        {
-            _context.Entry(account).State = EntityState.Modified;
-
-            try
-            {
-                _context.Account.Update(account);
-                _context.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AccountExists(acctId))
-                    return (int)ReturnCode.NOT_FOUND;
-                else
-                    throw;
-            }
-            return (int)ReturnCode.NO_CONTENT;
         }
 
         public int UpdateCustomer(int custId, Customer customer)
@@ -151,6 +47,180 @@ namespace BankProject.Repository
             }
             return (int)ReturnCode.NO_CONTENT;
         }
+
+        public Customer DeleteCustomer(int custId)
+        {
+            var customer = _context.Customer.Find(custId);
+            if (customer == null)
+            {
+                return null;
+            }
+
+            _context.Customer.Remove(customer);
+            _context.SaveChanges();
+            return customer;
+        }
+
+
+        public Customer GetCustomer(int custId)
+        {
+            var customer = _context.Customer.Find(custId);
+
+            return customer;
+        }
+
+        public IEnumerable<Customer> GetCustomers()
+        {
+            return _context.Customer.ToList();
+        }
+
+        /* Account Controls */
+        public Account AddAccount(Account account)
+        {
+            _context.Account.Add(account);
+            _context.SaveChanges();
+
+            return account;
+        }
+
+        public int UpdateAccount(int acctId, Account account)
+        {
+            _context.Entry(account).State = EntityState.Modified;
+
+            try
+            {
+                _context.Account.Update(account);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AccountExists(acctId))
+                    return (int)ReturnCode.NOT_FOUND;
+                else
+                    throw;
+            }
+            return (int)ReturnCode.NO_CONTENT;
+        }
+        
+
+        public Account DeleteAccountByAccountId(int acctId)
+        {
+            var account = _context.Account.Find(acctId);
+            if (account == null)
+            {
+                return null;
+            }
+
+            _context.Account.Remove(account);
+            _context.SaveChanges();
+            return account;
+        }
+
+        public Account GetAccountByAccountId(int acctId)
+        {
+            var account = _context.Account.FirstOrDefault(account => account.AcctId == acctId);
+
+            if (account == null)
+            {
+                return null;
+            }
+
+            return account;
+        }
+
+        public IEnumerable<Account> GetAccountsByCustomerId(int customerId)
+        {
+            var customer = _context
+                .Customer
+                    .Include("Accounts")
+                    .FirstOrDefault(c => c.CustId == customerId);
+
+            if (customer == null || customer.Account == null)
+            {
+                return null;
+            }
+
+            return customer.Account;
+        }
+
+        public IEnumerable<Account> GetAccountsBySsn(string ssn)
+        {
+            var customer = _context
+                .Customer
+                    .Include("Account")
+                    .FirstOrDefault(c => c.Ssn == ssn);
+
+            if (customer == null || customer.Account == null)
+            {
+                return null;
+            }
+
+            return customer.Account;
+        }
+
+        public IEnumerable<Account> GetAccounts(int custId)
+        {
+            return _context.Account.Where(c => c.CustId.Equals(custId)).AsEnumerable();
+        }
+
+        public IEnumerable<Account> GetAccounts()
+        {
+            return _context.Account.AsEnumerable();
+        }
+
+        /* Transaction Controls */
+        public Transactions AddTransaction(Transactions transaction)
+        {
+            // transfer
+            if (transaction.TargetAcct != null)
+            {
+                var source = GetAccountByAccountId(transaction.SourceAcct);
+                source.Balance -= transaction.Amount;
+                var target = GetAccountByAccountId((int)transaction.TargetAcct);
+                target.Balance += transaction.Amount;
+                UpdateAccount(transaction.SourceAcct, source);
+                UpdateAccount((int)transaction.TargetAcct, target);
+            }
+            else // deposit or withdrawal
+            {
+                var source = GetAccountByAccountId(transaction.SourceAcct);
+                source.Balance += transaction.Amount;
+                UpdateAccount(transaction.SourceAcct, source);
+            }
+            return transaction;
+        }
+
+        public IEnumerable<Transactions> GetTransactionByAccountId(int aid)
+        {
+            return _context.Transactions
+                .Where(t => t.SourceAcct == aid || t.TargetAcct == aid)
+                .AsEnumerable();
+        }
+
+        public IEnumerable<Transactions> GetLastNTransactions(int aid, int n) 
+        {
+            // want to get the N most recent transactions
+            return _context.Transactions
+                    .Where( t => t.SourceAcct == aid || t.TargetAcct == aid )
+                    .OrderByDescending(t => t.TranDate)
+                    .Take(n)
+                    .ToList();
+        }
+
+        // returns transactions involving this account
+        // from startDate to endDate inclusive
+        public IEnumerable<Transactions> GetTransactionsInDateRange(int aid, DateTime startDate, DateTime endDate) 
+        {
+            return _context.Transactions
+                    .Where(t => 
+                        ( t.SourceAcct == aid || t.TargetAcct == aid )
+                        && startDate <= t.TranDate 
+                        && t.TranDate <= endDate
+                    ).ToList();
+        }
+
+        /* Private Helpers */
+
         private bool AccountExists(int id)
         {
             return _context.Account.Any(e => e.AcctId == id);
@@ -159,6 +229,11 @@ namespace BankProject.Repository
         private bool CustomerExists(int id)
         {
             return _context.Customer.Any(e => e.CustId == id);
+        }
+        private enum ReturnCode
+        {
+            NO_CONTENT,
+            NOT_FOUND
         }
     }
 }

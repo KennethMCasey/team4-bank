@@ -19,19 +19,43 @@ namespace BankProject.Controllers
         {
             _repo = context;
         }
-        //https://banks4you.com/api/Transactions/*Account-Id*/*Filter-Type*/*Param1*/*Param2*
-        [HttpGet("{id}")]
-        public IEnumerable<Transactions> GetTransactions(int id)
-        {
-            //var transactions = _repo.Customer.Include(t => t.Transactions).AsEnumerable();
 
-            return _repo.GetTransactions(id);
-        }
+        //https://banks4you.com/api/Transactions
         [HttpPost]
-        public Transactions ExecuteTransaction(Transactions transaction)
+        public ActionResult<Transactions> AddTransaction(Transactions transaction)
         {
-            var tran = _repo.ExecuteTransaction(transaction);
-            return tran;
+            try {
+                 _repo.AddTransaction(transaction);
+                return NoContent();
+            } catch {
+                return StatusCode(500);
+            }
+           
         }
+
+        //https://banks4you.com/api/Transactions/{Account-Id}/num/{Param1}
+        [HttpGet("{aid:range(MIN_ID, MAX_ID)}/num/{n:range(1,10)}")]
+        public ActionResult<IEnumerable<Transactions>> GetLastN(int aid, int n)
+        {
+            var transactions = _repo.GetLastNTransactions(aid, n);
+            if (transactions == null)
+            {
+                return NotFound();
+            }
+            return new ActionResult<IEnumerable<Transactions>>(transactions);
+        }
+
+        //https://banks4you.com/api/Transactions/{Account-Id}/date/{Param1}/{Param2}
+        [HttpGet("{aid:range(MIN_ID, MAX_ID)}/date/{startDate:datetime}/{endDate:datetime}")]
+        public ActionResult<IEnumerable<Transactions>> GetTransactionsInDateRange(int aid, DateTime startDate, DateTime endDate)
+        {
+            var transactions = _repo.GetTransactionsInDateRange(aid, startDate, endDate);
+            if (transactions == null)
+            {
+                return NotFound();
+            }
+            return new ActionResult<IEnumerable<Transactions>>(transactions);
+        }
+
     }
 }
