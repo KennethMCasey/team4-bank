@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private quizService: QuizService, private router:Router ) { }
+  constructor(private quizService: QuizService, private router:Router ) { } //Service to be changed
 
   ngOnInit(): void {
   }
@@ -17,8 +17,8 @@ export class NavbarComponent implements OnInit {
   SignOut()
   {
     localStorage.clear();
-    clearInterval(this.quizService.timer);
-    this.router.navigate(['/register']);
+    clearInterval(this.quizService.timer); //timer property to be set
+    this.router.navigate(['/register']); //Navigation link to be changed
   }
 
 }
