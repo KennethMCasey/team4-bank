@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CustomerService } from 'src/service/customer.service'
+import {Customer} from 'src/model/Customer'
 
 @Component({
   selector: 'app-root',
@@ -7,5 +9,13 @@ import { Component } from '@angular/core';
 })
 export class CustomerMasterComponent 
 {
-//logic here
+
+  public customerList:Customer[]
+
+  constructor(private customerService:CustomerService) 
+  {
+    customerService.getCustomers().subscribe((result) => {this.customerList = result}, (error) => {alert("Error in fetching customers.\nInfo: " + error)})
+  }
+
+
 }
