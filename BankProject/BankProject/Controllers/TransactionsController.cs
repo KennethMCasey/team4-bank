@@ -48,10 +48,10 @@ namespace BankProject.Controllers
 
 
         // api/Transactions/{Account-Id}/num/{Param1}
-        [HttpGet("{aid:range(100000000, 1000000000)}/num/{startN:range(1,10)}/{endN:range(1,10)}")]
+        [HttpGet("{aid:range(100000000, 1000000000)}/num/{startN:min(0)}/{endN:int}")]
         public ActionResult<IEnumerable<Transactions>> GetTransactionsInRange(int aid, int startN, int endN)
         {
-            var transactions = _repo.GetTransactionsInRange(aid, n);
+            var transactions = _repo.GetTransactionsInRange(aid, startN, endN);
             if (transactions == null)
             {
                 return NotFound();
