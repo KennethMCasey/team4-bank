@@ -1,42 +1,44 @@
-
-    <!--Heading-->
-    <div class="brand-logo center">
-    <h3>Create Acount</h3>
-    </div>
-    <!--Form-->
-    <div class="container">
-    <div class="col s6 offset-s3">
+<!--Heading-->
+<div class="brand-logo center">
+  <h3>Create Acount</h3>
+</div>
+<!--Form-->
+<div class="container">
+  <div class="col s6 offset-s3">
     <div class="card">
-    <div class="card-content">
-    <form #registerForm="ngForm">
-    <div class="row">
-    <div class="input-field col s12">
-    <input type="text" name="Cust_ID">
-    <label> Customer ID</label>
-    </div>
-    </div>
-    
-     <div class="form-group">
-     <label for="website">Account Type</label>
-                <select formControlName="Acct_Type" class="form-control">
-                    <option>Checkin</option>
-                    <option>Savings</option>
-                </select>
+      <div class="card-content">
+        <form [formGroup]="form">
+          <div class="form-group">
+            <div class="input-field col s12">
+              <input id="customerID" formControlName="customerID" type="number" class="form-control" ngModel pattern="[\d]{9}">
             </div>
-    <div class="row">
-    <div class="input-field col s12">
-    <input type="text" name="Balance">
-    <label> Deposit Amount</label>
+            <div>
+              <label class="col-sm-6 control-label" for="customerID"> Customer ID </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="website">Account Type</label>
+            <select formControlName="Acct_Type" class="form-control">
+              <option>Checking</option>
+              <option>Savings</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <div class="input-field col s12">
+              <input id="depositAmount" formControlName="depositAmount" type="number" class="form-control">
+            </div>
+            <div>
+              <label class="col-sm-6 control-label" for="depositAmount"> Deposit Amount </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <button class="btn-large btn-submit" type="submit" [disabled]="!form.valid">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    </div>
-    <div class="row">
-    <div class="input-field col s12">
-    <button class="btn-large btn-submit" type="submit" [disabled]="!registerForm.valid">Submit</button>
-    </div>
-    </div>
-    </form>
-    </div>
-    </div>
-    </div>
-    </div>
- 
+  </div>
+</div>
