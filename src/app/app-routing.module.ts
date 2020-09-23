@@ -11,6 +11,7 @@ import {AccountDetailsComponent} from 'src/app/Teller/Account-Details/account-de
 import {AccountStatementComponent} from 'src/app/Teller/Account-Statement/account-statement.component'
 import {AccountTransferComponent} from 'src/app/Teller/Account-Transfer/account-transfer.component'
 import {AccountWithdrawComponent} from 'src/app/Teller/Account-Withdraw/account-withdraw.component'
+import {FourOhFourComponent} from 'src/app/404/404.component'
 import {HomeComponent} from 'src/app/Home/home.component'
 import {SignupComponent} from 'src/app/Auth/Sign-Up/signup.component'
 import { from } from 'rxjs';
@@ -18,10 +19,6 @@ import { from } from 'rxjs';
 
 const routes: Routes = 
 [
-  {path:'Login', component:LoginComponent},
-  {path:'Sign-Up', component:SignupComponent},
-  {path:'', component:HomeComponent},
-
   {path:'Teller', component:AccountDetailsComponent},
   {path:'Teller/Deposit/:id', component:AccountDepositComponent},
   {path:'Teller/Statement', component:AccountStatementComponent},
@@ -32,8 +29,12 @@ const routes: Routes =
   {path:'Executive/Account/Create', component:AccountCreateComponent},
   {path:'Executive/Customer', component:CustomerMasterComponent},
   {path:'Executive/Customer/Create', component:CustomerCreateComponent},
-  {path:'Executive/Customer/Update/:id', component:CustomerUpdateComponent}
+  {path:'Executive/Customer/Update/:id', component:CustomerUpdateComponent},
 
+  {path:'Login', component:LoginComponent},
+  {path:'Sign-Up', component:SignupComponent},
+  {path:'', component:HomeComponent},
+  {path:'**', component:FourOhFourComponent}
 ];
 
 @NgModule({

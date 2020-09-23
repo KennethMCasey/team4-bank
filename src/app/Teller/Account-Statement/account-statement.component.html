@@ -1,2 +1,99 @@
-<h1>Account Statement</h1>
-<p>Here the Teller will be able to enter an identifying paramater and generate the statement with some aditional query options</p>
+<!--<h1>Account Statement</h1>
+<p>Here the Teller will be able to enter an identifying paramater and generate the statement with some aditional query options</p>-->
+
+<!--<h1>Account Details Screen - Main Screen</h1>
+<p>This is the main screen for the Teller. From here they will have controls to Deposit Transfer And Withdraw Screen</p>
+<p>This screen is just a single search box, do not get all accounts here the Teller has to search for a specific account here</p>-->
+
+
+
+    <!--Heading-->
+    <div class="brand-logo center">
+    <h3>Get Statements</h3>
+    </div>
+    <!--Form-->
+    <div class="container">
+    <div class="col s6 offset-s3">
+    <div class="card">
+    <div class="card-content">
+    <form  name="updateForm" #registerForm="ngForm">
+    <div class="row">
+    <div class="input-field col s12">
+    <input type="text" name="SSN">
+    <label>Account ID</label>
+    </div>
+    </div>
+    <div class="radio"> 
+                <label>  
+                    <input type="radio" name="transactions" value="By Transactions" (click)="setradio('By Transactions')" [checked]='true' ngModel>  
+                    By Transactions
+                </label>  
+            </div> 
+           <div class="radio">
+                <label>  
+                    <input type="radio" name="date" value="By Date" (click)="setradio('By Date')" ngModel>  
+                    By Date 
+                </label>  
+           </div>  
+    <div *ngIf="isSelected('By Transactions')" >  
+       <div class="row">
+    <div class="input-field col s12">
+    <input type="text" name="start_count">
+    <label>Start Number</label>
+    </div>
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
+    <input type="text" name="end_count">
+    <label>End Number</label>
+    </div>
+    </div>
+       </div>  
+       <div *ngIf="isSelected('By Date')">  
+        <div class="row">
+    <div class="input-field col s12">
+    <input type="date" name="start_date">
+    <label>Start Date</label>
+    </div>
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
+    <input type="date" name="end_date">
+    <label>End Date</label>
+    </div>
+    </div>  
+       </div>   
+    <div class="row">
+    <div class="input-field col s12">
+    <button class="btn-large btn-submit" type="submit" [disabled]="!registerForm.valid">View</button>
+    </div>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    
+    <!--Display the 3 buttons -->
+    <div class="container-fluid">
+        <table>
+            <tr>
+                <th>Date</th> 
+                <th>Transaction Description</th>
+                <th>Balance</th>
+            </tr>
+            <tr>
+             <!--Code to be added-->
+            <!--<tr *ngFor="let book of books">
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.price }}</td>-->
+            </tr>
+             <td>
+               <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller">Back</button> 
+                </td>
+        </table>
+        <hr>
+    </div>
+    
+      

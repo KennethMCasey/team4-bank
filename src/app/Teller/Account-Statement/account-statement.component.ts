@@ -34,5 +34,25 @@ export class AccountStatementComponent
     this.inProgress(true)
     this.transactionService.getTransactions(accountId, paramOne, paramTwo).subscribe( (response) => {this.inProgress(false); this.transactions = response }, (error) => {this.inProgress(false); alert("There has been an error: " + error)})
   }
+
+
+  private selectedLink: string="By Transactions";        
+  
+  setradio(e: string): void   
+{  
+
+      this.selectedLink = e;  
+        
+}  
+
+  isSelected(name: string): boolean   
+{  
+
+      if (!this.selectedLink) { // if no radio button is selected, always return false so every nothing is shown  
+          return false;  
+}  
+
+      return (this.selectedLink === name); // if current radio button is selected, return true, else return false  
+  }
  
 }
