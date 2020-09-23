@@ -17,7 +17,9 @@ import {AccountTransferComponent} from 'src/app/Teller/Account-Transfer/account-
 import {AccountWithdrawComponent} from 'src/app/Teller/Account-Withdraw/account-withdraw.component'
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { HomeComponent } from './Home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from '../service/auth/error.interceptor';
+import { JwtInterceptor } from '../service/auth/jwt.interceptor';
 
 @NgModule({
   declarations: 
@@ -46,7 +48,10 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

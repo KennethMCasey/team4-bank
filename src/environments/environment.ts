@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiUrl: 'http://localhost:5200',
   apiPort: 5200,                    // web api port number
   apiEndpoints: {
     Customers: '/api/Customers/',        // expects Customer shaped JSON object in the body
@@ -11,6 +12,8 @@ export const environment = {
     Transactions: '/api/Transactions/'
   }
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -13,9 +13,8 @@ import {Router} from '@angular/router'
 export class CustomerCreateComponent implements OnInit
 {
   form: FormGroup;
-  constructor(private customerService:CustomerService, private router:Router) 
-  {  
-  }
+  constructor(private customerService:CustomerService, private router:Router) {}
+
   ngOnInit(){
     this.form = new FormGroup({
         ssn: new FormControl("",  [Validators.required]),
@@ -26,7 +25,7 @@ export class CustomerCreateComponent implements OnInit
         city: new FormControl("", [Validators.required]),
         state: new FormControl("", [Validators.required])
     });
-}
+  }
 
   public customer:Customer
 
