@@ -27,7 +27,7 @@ export class AccountDepositComponent
 
 public getNewBalance()
 {
-  return this.account.Balance + ( Number.isNaN(Number.parseInt(this.form.get('value').value))? 0 : Number.parseInt(this.form.get('value').value))
+  return this.account.Balance + ( Number.isNaN(Number.parseInt(this.form.get('amount').value))? 0 : Number.parseInt(this.form.get('amount').value))
 }
   constructor(private transactionService:TransactionService, private router:Router, private accountService:AccountService, private route:ActivatedRoute) 
   {

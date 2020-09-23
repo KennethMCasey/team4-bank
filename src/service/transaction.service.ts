@@ -31,7 +31,7 @@ export class TransactionService {
   //https://banks4you.com/api/Transactions/{Account-Id}/{Filter-Type}/{Param1}/{Param2}
  // Get all Account (5.2.5)
   getTransactions(accountId: number, paramOne: any, paramTwo: any) {
-    var filterType = (paramOne instanceof Number) ? "num":"date"
+    var filterType = (Number.isNaN(Number(paramOne))) ? "date":"num"
     return this.httpClient.get<Transactions[]>(`${this.apiEndpoint.Transactions}${accountId}/${filterType}/${paramOne}/${paramTwo}`);
   }
 }
