@@ -19,14 +19,14 @@ form: FormGroup
   constructor(private accountService:AccountService, private router:Router) 
   
   {
-      this.form = new FormGroup({
-        Acct_Type: new FormControl('', Validators.required)
-      });
+      // this.form = new FormGroup({
+      //   Acct_Type: new FormControl('', Validators.required)
+      // });
   }
  
   ngOnInit() {
     this.form = new FormGroup({
-      depositAmount: new FormControl("", [Validators.required, Validators.maxLength(20)]),
+      depositAmount: new FormControl("", [Validators.required, Validators.max(99999999999999999999), Validators.min(0)]),
       customerID: new FormControl("", [Validators.required]),
       Acct_Type: new FormControl("", [Validators.required])
     });
