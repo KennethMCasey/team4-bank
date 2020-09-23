@@ -233,7 +233,6 @@ namespace BankProject.Repository
         }
 
         /* Private Helpers */
-
         private bool AccountExists(int id)
         {
             return _context.Account.Any(e => e.AcctId == id);
