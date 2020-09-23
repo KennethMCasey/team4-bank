@@ -73,7 +73,9 @@ namespace JWTAuthentication.Controllers
         {
             var userExists = await userManager.FindByNameAsync(model.Username);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+                return StatusCode(StatusCodes.Status500InternalServerError, 
+                    new Response { Status = "Error", Message = "User already exists!" }
+                );
 
             User user = new User()
             {
@@ -83,7 +85,9 @@ namespace JWTAuthentication.Controllers
             };
             var result = await userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+                return StatusCode(StatusCodes.Status500InternalServerError, 
+                    new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." 
+                });
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
@@ -108,6 +112,7 @@ namespace JWTAuthentication.Controllers
 
             if (!await roleManager.RoleExistsAsync(UserRoles.Executive))
                 await roleManager.CreateAsync(new IdentityRole(UserRoles.Executive));
+
             if (!await roleManager.RoleExistsAsync(UserRoles.Cashier))
                 await roleManager.CreateAsync(new IdentityRole(UserRoles.Cashier));
 
