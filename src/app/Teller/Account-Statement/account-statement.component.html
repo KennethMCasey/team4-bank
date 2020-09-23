@@ -16,35 +16,35 @@
     <div class="col s6 offset-s3">
     <div class="card">
     <div class="card-content">
-    <form  name="updateForm" #registerForm="ngForm">
+    <form [formGroup]="form" name="updateForm" #registerForm="ngForm" (ngSubmit)="getTransaction()">
     <div class="row">
     <div class="input-field col s12">
-    <input type="text" name="SSN">
+    <input formControlName="Acct_Id" type="number" name="SSN">
     <label>Account ID</label>
     </div>
     </div>
     <div class="radio"> 
                 <label>  
-                    <input type="radio" name="transactions" value="By Transactions" (click)="setradio('By Transactions')" [checked]='true' ngModel>  
+                    <input formControlName="QueryType_num" type="radio"  value="By Transactions" (click)="setradio('By Transactions')" [checked]='true' ngModel>  
                     By Transactions
                 </label>  
             </div> 
            <div class="radio">
                 <label>  
-                    <input type="radio" name="date" value="By Date" (click)="setradio('By Date')" ngModel>  
+                    <input formControlName="QueryType_date" type="radio" value="By Date" (click)="setradio('By Date')" [checked]='true' ngModel>  
                     By Date 
                 </label>  
            </div>  
     <div *ngIf="isSelected('By Transactions')" >  
        <div class="row">
     <div class="input-field col s12">
-    <input type="text" name="start_count">
+    <input formControlName="Num1" type="number" >
     <label>Start Number</label>
     </div>
     </div>
     <div class="row">
     <div class="input-field col s12">
-    <input type="text" name="end_count">
+    <input formControlName="Num2" type="number" >
     <label>End Number</label>
     </div>
     </div>
@@ -52,13 +52,13 @@
        <div *ngIf="isSelected('By Date')">  
         <div class="row">
     <div class="input-field col s12">
-    <input type="date" name="start_date">
+    <input formControlName="Date1" type="date" >
     <label>Start Date</label>
     </div>
     </div>
     <div class="row">
     <div class="input-field col s12">
-    <input type="date" name="end_date">
+    <input formControlName="Date2" type="date" >
     <label>End Date</label>
     </div>
     </div>  
@@ -81,18 +81,13 @@
                 <th>Transaction Description</th>
                 <th>Balance</th>
             </tr>
-            <tr>
-             <!--Code to be added-->
-            <!--<tr *ngFor="let book of books">
-                <td>{{ book.id }}</td>
-                <td>{{ book.title }}</td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.price }}</td>-->
-            </tr>
-             <td>
-               <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller">Back</button> 
-                </td>
+            <tr *ngFor="let transaction of this.transactions">
+                <td>{{ transaction.Tran_Date }}</td>
+                <td>Source Account:{{ transaction.Source_Acct }} Target Account: {{transaction.Target_Acct}}</td>
+                <td>{{ transaction.Amount }}</td>
+            </tr>    
         </table>
+        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller">Back</button> 
         <hr>
     </div>
     
