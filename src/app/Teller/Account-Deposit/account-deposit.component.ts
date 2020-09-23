@@ -21,13 +21,13 @@ export class AccountDepositComponent
 {
   this.form = new FormGroup
   ({
-    amount: new FormControl( "",  [Validators.required])
+    amount: new FormControl( "",  [Validators.required, Validators.maxLength(20)])
   })
 }
 
 public getNewBalance()
 {
-  return this.account.Balance + ( Number.isNaN(Number.parseInt(this.form.get('value').value))? 0 : Number.parseInt(this.form.get('value').value))
+  return this.account.Balance + ( Number.isNaN(Number.parseInt(this.form.get('amount').value))? 0 : Number.parseInt(this.form.get('amount').value))
 }
   constructor(private transactionService:TransactionService, private router:Router, private accountService:AccountService, private route:ActivatedRoute) 
   {
