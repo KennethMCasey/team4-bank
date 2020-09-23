@@ -37,15 +37,15 @@ export class AccountStatementComponent
  
   getTransaction()
   {
-    
+    this.inProgress(true)
     if (this.selectedLink == 'By Date') 
     {
     if (this.form.get('Date1').value == "" || this.form.get('Date2').value == "") {alert("please fill out date number fields"); return}
     this.transactionService.getTransactions(Number.parseInt(this.form.get('Acct_Id').value), this.form.get('Date1').value, this.form.get('Date2').value ).subscribe
     (
      
-      (response) => this.transactions = response,
-      (error) => alert("Date Error: " + JSON.stringify(error))
+      (response) => {console.log(response); this.inProgress(false); this.transactions = response},
+      (error) => {this.inProgress(false); alert("Date Error: " + JSON.stringify(error))}
     )
     }
     if (this.selectedLink == 'By Transactions') 
@@ -54,8 +54,8 @@ export class AccountStatementComponent
     if (this.form.get('Num1').value == ""|| this.form.get('Num2').value == "") {alert("please fill out all number fields"); return}
     this.transactionService.getTransactions(Number.parseInt(this.form.get('Acct_Id').value), Number.parseInt(this.form.get('Num1').value), Number.parseInt( this.form.get('Num2').value )).subscribe
     (
-      (response) => this.transactions = response,
-      (error) => alert("Num Error: " + JSON.stringify(error))
+      (response) => {console.log(response); this.inProgress(false); this.transactions = response},
+      (error) => {this.inProgress(false); alert("Num Error: " + JSON.stringify(error))}
     )
     }
   }
@@ -68,14 +68,19 @@ export class AccountStatementComponent
 
   getTransactionsFilterDate(accountId:number, paramOne:string, paramTwo:string) 
   {
+    this.inProgress(true);
     this.inProgress(true)
-    this.transactionService.getTransactions(accountId, paramOne, paramTwo).subscribe( (response) => this.transactions = response), (error) => alert("There has been an error: " + error)
+    this.transactionService.getTransactions(accountId, paramOne, paramTwo).subscribe( 
+      (response) =>{console.log(response);  this.inProgress(false); this.transactions = response}), 
+      (error) =>{this.inProgress(false); alert("There has been an error: " + error)}
   }
 
   getTransactionsFilterNumber(accountId:number, paramOne:number, paramTwo:number) 
   {
     this.inProgress(true)
-    this.transactionService.getTransactions(accountId, paramOne, paramTwo).subscribe( (response) => {this.inProgress(false); this.transactions = response }, (error) => {this.inProgress(false); alert("There has been an error: " + error)})
+    this.transactionService.getTransactions(accountId, paramOne, paramTwo).subscribe(
+       (response) => {this.inProgress(false); console.log(response); this.transactions = response }, 
+       (error) => {this.inProgress(false); console.log(error); alert("There has been an error: " + error)})
   }
 
 

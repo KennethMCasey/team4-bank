@@ -18,7 +18,14 @@ export class AccountMasterComponent
     
     this.accountList = null
     this.hasError = false
-    accountService.getAccounts().subscribe((result) => {this.accountList = result}, (error) => {alert("Error in fetching Accounts.\nInfo: " + error)})
+    accountService.getAccounts().subscribe(
+      (result) => {console.log("result:" + result); this.accountList = result}, 
+      (error) => {console.log("error:" + error); alert("Error in fetching Accounts.\nInfo: " + error)})
     
+  }
+
+  deleteAccount(accountId:Number) 
+  {
+    alert("implement me plz")
   }
 }

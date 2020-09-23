@@ -31,32 +31,22 @@ ngOnInit()
 
  public getAccount(queryValue:string, accountSearchId:number) 
  {
-this.accounts = new Array<Account>()
-this.accounts.push(
-{
-Acct_Id:66,
-Cust_Id:66, 
-Acct_Type:"saving",
-Balance:66,
-CR_Date:"8",
-TR_Last_Date:"8",
-Duration:8
-})
-  
-/*
+
   this.acccountService.getAccount(queryValue, accountSearchId).subscribe
   (
      (result) => 
      {
+       console.log(result);
        this.accounts = result;
        if (this.accounts == null) alert("No Account Found  with Id " + accountSearchId)
      },
      (error) => 
      {
+       console.log("error: " + error)
        alert("There was an error during your request:\n" + JSON.stringify(error))
      }
   )
-  */
+  
  }
  
 

@@ -33,20 +33,11 @@ export class AccountWithdrawComponent
 
   constructor(private transactionService:TransactionService, private router:Router, private accountService:AccountService, private route:ActivatedRoute) 
   {
-    this.account= 
-    {
-      Acct_Id:66,
-      Cust_Id:66, 
-      Acct_Type:"saving",
-      Balance:66,
-      CR_Date:"8",
-      TR_Last_Date:"8",
-      Duration:8
-      }
+    this.inProgress(true)
     accountService.getAccount("Account ID" ,Number.parseInt(route.snapshot.paramMap.get('id'))).subscribe
     (
-      (result) => this.account = result[0],
-      (error) => alert("could not get account, go back here")
+      (result) => {console.log(result); this.inProgress(false); this.account = result[0]},
+      (error) => {console.log(error); this.inProgress(false); alert("could not get account, go back here")}
     )
   }
 

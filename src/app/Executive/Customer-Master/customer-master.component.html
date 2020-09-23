@@ -5,7 +5,39 @@
 <p>Status for all of the Customers will be here as well </p>-->
 
     <!--Heading-->
-    <div class="brand-logo center">
+<div class="brand-logo center">
     <h3>View Customer</h3>
+    </div>
+    <!--View-->
+    <!--Display the 3 buttons -->
+    <div class="container-fluid">
+        <table>
+            <tr>
+                <th>SSN ID</th>
+                <th>Status</th>
+                <th>Message</th>
+                <th>Last Updated</th>
+                <th>Delete</th>
+                <th>Refresh</th>
+            </tr>
+            <!--Code to be added-->
+            <tr *ngFor="let customer of this.customerList">
+                <td>{{ customer.SSN }}</td>
+                <td>LIVE</td>
+                <td>
+                Name: {{customer.Name}}    
+                Address: {{ customer.Address }}
+                Age: {{customer.Age}}
+                </td>
+                <td>{{getLastUpdated(customer.Cust_Id)}}</td>
+                <td> 
+                    <button  class="btn btn-sm btn-outline-primary" routerLink="">Delete</button> 
+                </td>
+                <td> 
+                    <button  class="btn btn-sm btn-outline-primary" routerLink="/Executive/Customer">Refresh</button> 
+                </td>
+                 </tr>
+        </table>
+        <hr>
     </div>
     

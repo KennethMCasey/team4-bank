@@ -87,7 +87,9 @@ public getTargetAccount()
     this.transaction.Amount = this.form.get('amount').value
     console.log(this.transaction)
 
-    this.transactionService.addTransaction(this.transaction).subscribe( (success) => {this.inProgress(false); alert("The transaction has been posted successfully."); this.router.navigateByUrl('/') }, (error) => {this.inProgress(false); alert("There was an error:\n" + JSON.stringify(error))} )
+    this.transactionService.addTransaction(this.transaction).subscribe(
+       (success) => {console.log(success); this.inProgress(false); alert("The transaction has been posted successfully."); this.router.navigateByUrl('/') }, 
+       (error) => {console.log(error); this.inProgress(false); alert("There was an error:\n" + JSON.stringify(error))} )
   }
 
   private inProgress(yesno:boolean) 

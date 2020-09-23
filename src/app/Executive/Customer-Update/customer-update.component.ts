@@ -55,7 +55,11 @@ export class CustomerUpdateComponent implements OnInit
     this.customer.Address = this.form.get('address').value
     console.log(this.customer)
 
-    this.customerService.editCustomer(Customer).subscribe((response) =>{this.operationInProgress(false);  this.operationComplete(true, null); () => this.router.navigateByUrl('/')}, (error) => { this.operationInProgress(false); this.operationComplete(false, JSON.stringify(error))})
+    this.customerService.editCustomer(Customer).subscribe
+    (
+      (response) =>{console.log("response:" + response); this.operationInProgress(false);  this.operationComplete(true, null); this.router.navigateByUrl('/');},
+      (error) => {console.log("error:" + error); this.operationInProgress(false); this.operationComplete(false, JSON.stringify(error))}
+    )
   }
 
   private operationInProgress(yesno:Boolean) 

@@ -44,7 +44,10 @@ export class CustomerCreateComponent implements OnInit
     State: ${this.form.get('state').value}`
 
     console.log(this.customer)
-    this.customerService.addCustomer(this.customer).subscribe(() =>{this.operationInProgress(false);  this.operationComplete(true, null); this.router.navigateByUrl('/')}, (error) => { this.operationInProgress(false); this.operationComplete(false, JSON.stringify(error))})
+
+    this.customerService.addCustomer(this.customer).subscribe(
+      (result) =>{console.log("result:" + result); this.operationInProgress(false);  this.operationComplete(true, null); this.router.navigateByUrl('/')}, 
+      (error) => {console.log("error: " + error); this.operationInProgress(false); this.operationComplete(false, JSON.stringify(error))})
   }
 
   private operationInProgress(yesno:Boolean) 

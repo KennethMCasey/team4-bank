@@ -39,9 +39,13 @@ form: FormGroup
     this.account.Cust_Id = this.form.get('customerID').value
     this.account.Balance = this.form.get('depositAmount').value
     this.account.Acct_Type = this.form.get('Acct_Type').value
-    console.log(this.account)
+    console.log("Account:" + this.account)
 
-    this.accountService.addAccount(this.account).subscribe((response) =>{this.operationInProgress(false);  this.operationComplete(true, null); this.router.navigateByUrl('/')}, (error) => { this.operationInProgress(false); this.operationComplete(false, JSON.stringify(error))})
+    this.accountService.addAccount(this.account).subscribe
+    (
+      (response) =>{console.log("response: " + response); this.operationInProgress(false);  this.operationComplete(true, null); this.router.navigateByUrl('/')},
+      (error) => {console.log("error:" + error); this.operationInProgress(false); this.operationComplete(false, JSON.stringify(error))}
+    )
   }
 
   private operationInProgress(yesno:Boolean) 
