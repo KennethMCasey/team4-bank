@@ -29,6 +29,7 @@ namespace BankProject.Repository
         Transactions AddTransaction(Transactions transactions);
         IEnumerable<Transactions> GetTransactionByAccountId(int aid);
         IEnumerable<Transactions> GetLastNTransactions(int aid, int n);
+        IEnumerable<Transactions> GetTransactionsInRange(int aid, int startDate, int endDate);
         IEnumerable<Transactions> GetTransactionsInDateRange(int aid, DateTime startDate, DateTime endDate); 
         
     }

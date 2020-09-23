@@ -209,6 +209,17 @@ namespace BankProject.Repository
                     .ToList();
         }
 
+        public IEnumerable<Transactions> GetTransactionsInRange(int aid, int startN, int endN)
+        {
+            // want to get the most recent transactions in range startN to endN
+            return _context.Transactions
+                    .Where( t => t.SourceAcct == aid || t.TargetAcct == aid )
+                    .OrderByDescending(t => t.TranDate)
+                    .Skip(startN - 1)
+                    .Take(endN - startN + 1)
+                    .ToList();
+        }
+
         // returns transactions involving this account
         // from startDate to endDate inclusive
         public IEnumerable<Transactions> GetTransactionsInDateRange(int aid, DateTime startDate, DateTime endDate) 

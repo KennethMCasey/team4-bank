@@ -19,7 +19,7 @@ namespace BankProject.Controllers
             _repo = context;
         }
 
-        //https://banks4you.com/api/Transactions
+        // api/Transactions
         [HttpPost]
         public ActionResult<Transactions> AddTransaction(Transactions transaction)
         {
@@ -33,7 +33,7 @@ namespace BankProject.Controllers
            
         }
 
-        //https://banks4you.com/api/Transactions/{Account-Id}/num/{Param1}
+        // api/Transactions/{Account-Id}/num/{Param1}
         [HttpGet("{aid:range(100000000, 1000000000)}/num/{n:range(1,10)}")]
         public ActionResult<IEnumerable<Transactions>> GetLastN(int aid, int n)
         {
@@ -42,10 +42,24 @@ namespace BankProject.Controllers
             {
                 return NotFound();
             }
+
             return new ActionResult<IEnumerable<Transactions>>(transactions);
         }
 
-        //https://banks4you.com/api/Transactions/{Account-Id}/date/{Param1}/{Param2}
+
+        // api/Transactions/{Account-Id}/num/{Param1}
+        [HttpGet("{aid:range(100000000, 1000000000)}/num/{startN:range(1,10)}/{endN:range(1,10)}")]
+        public ActionResult<IEnumerable<Transactions>> GetTransactionsInRange(int aid, int startN, int endN)
+        {
+            var transactions = _repo.GetTransactionsInRange(aid, n);
+            if (transactions == null)
+            {
+                return NotFound();
+            }
+            return new ActionResult<IEnumerable<Transactions>>(transactions);
+        }
+
+        // api/Transactions/{Account-Id}/date/{Param1}/{Param2}
         [HttpGet("{aid:range(100000000, 1000000000)}/date/{startDate:datetime}/{endDate:datetime}")]
         public ActionResult<IEnumerable<Transactions>> GetTransactionsInDateRange(int aid, DateTime startDate, DateTime endDate)
         {
