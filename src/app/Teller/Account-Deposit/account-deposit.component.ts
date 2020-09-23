@@ -21,7 +21,7 @@ export class AccountDepositComponent
 {
   this.form = new FormGroup
   ({
-    amount: new FormControl( "",  [Validators.required])
+    amount: new FormControl( "",  [Validators.required, Validators.max(99999999999999999999), Validators.min(0)])
   })
 }
 

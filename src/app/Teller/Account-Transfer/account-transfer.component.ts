@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
-import {TransactionService} from 'src/service/transaction.service'
-import {Transactions} from 'src/model/Transactions'
+import { TransactionService } from 'src/service/transaction.service'
+import { Transactions } from 'src/model/Transactions'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {Account} from 'src/model/Account'
-import {AccountService} from 'src/service/account.service'
-import {Router, ActivatedRoute} from '@angular/router'
+import { Account } from 'src/model/Account'
+import { AccountService } from 'src/service/account.service'
+import { Router, ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-root',
@@ -13,73 +13,60 @@ import {Router, ActivatedRoute} from '@angular/router'
   styleUrls: ['./account-transfer.component.css']
 })
 
-export class AccountTransferComponent 
-{
+export class AccountTransferComponent implements OnInit {
 
-  public form:FormGroup
-  public sourceAccount:Account
-  public targetAccount:Account
+  public form: FormGroup
+  public sourceAccount: Account
+  public targetAccount: Account
 
-  ngOnInit()
-{
-  this.form = new FormGroup
-  ({
-    amount: new FormControl( "",  [Validators.required]),
-    target: new FormControl( "",  [Validators.required])
-  })
-}
-
-  constructor(private transactionService:TransactionService, private router:Router, private accountService:AccountService, private route:ActivatedRoute) 
-  {
-
-    this.sourceAccount= 
-    {
-      Acct_Id:66,
-      Cust_Id:66, 
-      Acct_Type:"saving",
-      Balance:66,
-      CR_Date:"8",
-      TR_Last_Date:"8",
-      Duration:8
-      }
-    accountService.getAccount("Account ID" ,Number.parseInt(route.snapshot.paramMap.get('id'))).subscribe
-    (
-      (result) => this.sourceAccount = result[0],
-      (error) => alert("could not get account, go back here")
-    )
+  ngOnInit() {
+    this.form = new FormGroup
+      ({
+        amount: new FormControl("", [Validators.required, Validators.max(99999999999999999999), Validators.min(0)]),
+        target: new FormControl("", [Validators.required])
+      })
   }
 
-  public transaction:Transactions
+  constructor(private transactionService: TransactionService, private router: Router, private accountService: AccountService, private route: ActivatedRoute) {
 
-  public getNewBalance(str:string)
-{
- if (str == "source") return this.sourceAccount.Balance - ( Number.isNaN(Number.parseInt(this.form.get('amount').value))? 0 : Number.parseInt(this.form.get('amount').value))
- if (str == "target") return this.sourceAccount.Balance + ( Number.isNaN(Number.parseInt(this.form.get('amount').value))? 0 : Number.parseInt(this.form.get('amount').value))
-}
-
-
-public getTargetAccount() 
-{
-  this.accountService.getAccount("Account ID" ,Number.parseInt(this.form.get('target').value)).subscribe
-  (
-    (result) => this.sourceAccount = result[0],
-    (error) => {alert("could not get account, go back here")
-    this.targetAccount= 
-    {
-      Acct_Id:66,
-      Cust_Id:66, 
-      Acct_Type:"saving",
-      Balance:66,
-      CR_Date:"8",
-      TR_Last_Date:"8",
-      Duration:8
-      }
+    accountService.getAccount("Account ID", Number.parseInt(route.snapshot.paramMap.get('id'))).subscribe
+      (
+        (result) => this.sourceAccount = result[0],
+        (error) => alert("could not get account, go back here")
+      )
   }
-  )
 
-}
-  public postTransaction() 
-  {
+  public transaction: Transactions
+
+  public getNewBalance(str: string) {
+    if (str == "source") return this.sourceAccount.Balance - (Number.isNaN(Number.parseInt(this.form.get('amount').value)) ? 0 : Number.parseInt(this.form.get('amount').value))
+    if (str == "target") return this.sourceAccount.Balance + (Number.isNaN(Number.parseInt(this.form.get('amount').value)) ? 0 : Number.parseInt(this.form.get('amount').value))
+  }
+
+
+  public getTargetAccount() {
+    this.accountService.getAccount("Account ID", Number.parseInt(this.form.get('target').value)).subscribe
+      (
+        (result) => this.sourceAccount = result[0],
+        (error) => {
+          console.log("error: " + error)
+          alert("could not get account, go back here")
+          this.targetAccount =
+          {
+            Acct_Id: 66,
+            Cust_Id: 66,
+            Acct_Type: "saving",
+            Balance: 66,
+            CR_Date: "8",
+            TR_Last_Date: "8",
+            Duration: 8
+          }
+        }
+      )
+
+  }
+  public postTransaction() {
+    if (this.sourceAccount == null) {alert("fatal error: source account null"); return}
     this.inProgress(true)
     this.transaction = new Transactions()
     this.transaction.Source_Acct = this.sourceAccount.Acct_Id
@@ -92,8 +79,7 @@ public getTargetAccount()
        (error) => {console.log(error); this.inProgress(false); alert("There was an error:\n" + JSON.stringify(error))} )
   }
 
-  private inProgress(yesno:boolean) 
-  {
+  private inProgress(yesno: boolean) {
     //update UI Here
   }
 }
