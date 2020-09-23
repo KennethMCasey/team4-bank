@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/service/customer.service'
 import { Customer } from 'src/model/Customer'
 import {Router, ActivatedRoute} from '@angular/router'
@@ -9,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './customer-update.component.html',
   styleUrls: ['./customer-update.component.css']
 })
-export class CustomerUpdateComponent 
+export class CustomerUpdateComponent implements OnInit
 {
   public form:FormGroup
   public customer: Customer
@@ -21,7 +21,7 @@ export class CustomerUpdateComponent
     this.form = new FormGroup({
       ssn: new FormControl( "",  [Validators.required]),
       name: new FormControl( "", [Validators.required]),
-      age: new FormControl( "", [Validators.required]),
+      age: new FormControl( "", [Validators.required, Validators.maxLength(3)]),
       address: new FormControl( "", [Validators.required])
   });
   this.form.disable()

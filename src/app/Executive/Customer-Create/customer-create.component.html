@@ -9,8 +9,9 @@
       <div class="card-content">
         <form [formGroup]="form" (ngSubmit)="postCustomer()" >
             <div class="form-group">
-              <div class="input-field col s12">
+              <!-- <div class="input-field col s12">
                 <input id="ssn" formControlName="ssn" type="text" class="form-control" ngModel pattern="[0-8]{9}"> 
+
               </div>
               <div>
                 <label class="col-sm-6 control-label" for="ssn"> Customer SSN (Required)</label>
@@ -31,10 +32,49 @@
               <div>
                 <label class="col-sm-6 control-label" for="age"> Customer Age</label>
               </div>
+            </div> -->
+            <div class="input-field col s12">
+              <input id="ssn" formControlName="ssn" type="text" class="form-control" ngModel pattern="[\d]{9}">
+              <div *ngIf="form.get('ssn').invalid && form.get('ssn').touched" class="alert alert-danger">
+               <div *ngIf="form.get('ssn').errors.required"> SSN is required.</div>
+               <div *ngIf="form.get('ssn').errors.pattern"> SSN should have 9 numbers.</div>
+              </div>
+              
             </div>
+            <div>
+              <label class="col-sm-6 control-label" for="ssn"> Customer SSN</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-field col s12">
+              <input id="name" formControlName="name" type="text" class="form-control">
+              <div *ngIf="form.get('name').invalid && form.get('name').touched" class="alert alert-danger">
+                <div *ngIf="form.get('name').errors.required"> Customer Name is required.</div>
+               </div>
+            </div>
+            <div>
+              <label class="col-sm-6 control-label" for="name"> Customer Name</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-field col s12">
+              <input id="age" formControlName="age" type="number" class="form-control" ngModel pattern = "[1-9][\d]?[\d]?">
+              <div *ngIf="form.get('age').invalid && form.get('age').touched" class="alert alert-danger">
+                <div *ngIf="form.get('age').errors.required"> Age is required.</div>
+                <div *ngIf="form.get('age').errors.pattern"> Age can only have a maximum of 3 numbers.</div>
+               </div>
+            </div>
+            <div>
+              <label class="col-sm-6 control-label" for="age"> Customer Age</label>
+            </div>
+          </div>
             <div class="form-group">
               <div class="input-field col s12">
                 <input id="address1" formControlName="address1" type="text" class="form-control">
+                <div *ngIf="form.get('address1').invalid && form.get('address1').touched" class="alert alert-danger">
+                  <div *ngIf="form.get('address1').errors.required"> Address 1 is required.</div>
+                  
+                 </div>
               </div>
               <div>
                 <label class="col-sm-6 control-label" for="address1"> Customer Address 1</label>
@@ -51,6 +91,11 @@
             <div class="form-group">
               <div class="input-field col s12">
                 <input id="city" formControlName="city" type="text" class="form-control">
+                <div *ngIf="form.get('city').invalid && form.get('city').touched" class="alert alert-danger">
+                  <div *ngIf="form.get('city').errors.required"> Customer City is required.</div>
+                  
+                 </div>
+                
               </div>
               <div>
                 <label class="col-sm-6 control-label" for="city"> Customer City</label>
@@ -59,6 +104,9 @@
             <div class="form-group">
               <div class="input-field col s12">
                 <input id="state" formControlName="state" type="text" class="form-control">
+                <div *ngIf="form.get('state').invalid && form.get('state').touched" class="alert alert-danger">
+                  <div *ngIf="form.get('state').errors.required"> Customer State is required.</div>
+                 </div>
               </div>
               <div>
                 <label class="col-sm-6 control-label" for="state"> Customer State</label>
