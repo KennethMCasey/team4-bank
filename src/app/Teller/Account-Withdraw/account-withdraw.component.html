@@ -14,10 +14,10 @@
     <div class="col s6 offset-s3">
     <div class="card">
     <div class="card-content">
-    <form  name="" #registerForm="ngForm">
+    <form  name="form" #registerForm="ngForm" [formGroup]="form" (ngSubmit)="postTransaction()">
     <div class="row">
     <div class="input-field col s12">
-    <input type="text" name="">
+    <input formControlName="amount" type="number" name="amount">
     <label> Withdraw Amount</label>
     </div>
     </div>
@@ -40,22 +40,13 @@
                 <th>Latest Balance</th> <!--After Withdraw-->
             </tr>
             <tr>
-            </tr>
-            <tr>
-            </tr>
-            <tr>
-            </tr>
-            <tr>
-            <!--Code to be added-->
-            <!--<tr *ngFor="let book of books">
-                <td>{{ book.id }}</td>
-                <td>{{ book.title }}</td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.price }}</td>-->
-                </tr>
+                <td>{{ this.account.Acct_Id }}</td>
+                <td>{{ this.account.Balance }}</td>
+                <td>{{ getNewBalance() }}</td>
                 <td> 
                     <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller">Back</button> 
                 </td>
+            </tr>
         </table>
         <hr>
     </div>

@@ -48,7 +48,7 @@ export class AccountService {
   {
     if (queryValue == "Customer ID") queryValue = "cid"
     if (queryValue == "SSN ID") queryValue = "ssn"
-    if (queryValue == "Account ID") queryValue = "cid"
+    if (queryValue == "Account ID") queryValue = "aid"
     if (queryValue == "cid" || queryValue == "ssn" || queryValue == "aid")
     return this.httpClient.get<Account[]>(`${this.apiEndpoint.Accounts}${queryValue}/${id}`);
     else return null

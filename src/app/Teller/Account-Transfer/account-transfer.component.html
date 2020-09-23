@@ -15,24 +15,24 @@
     <div class="col s6 offset-s3">
     <div class="card">
     <div class="card-content">
-    <form  name="" #registerForm="ngForm">
+    <form  name="" #registerForm="ngForm" [formGroup]="form" (ngSubmit)="postTransaction()">
     <div class="row">
     <div class="input-field col s12">
-    <input type="text" name="">
+    <input formControlName="amount" type="number" name="">
     <label> Transfer Amount</label>
     </div>
     </div>
     <div class="row">
     <div class="input-field col s12">
-    <input type="text" name="">
-    <label> Source Account (From)</label>
+    <input value="Source Account: {{this.sourceAccount.Acct_Id}}" disabled>
     </div>
     </div>
     <div class="row">
     <div class="input-field col s12">
-    <input type="text" name="">
+    <input formControlName="target" type="number" name="">
     <label> Target Account (To)</label>
     </div>
+    <button class="btn btn-primary btn-sm" (click)="getTargetAccount()" >Validate</button>
     </div>
     <div class="row">
     <div class="input-field col s12">
@@ -51,39 +51,25 @@
                 <th>Acccount ID</th>
                 <th>Balance Before Transfer</th>    <!--Before Transfer-->
                 <th>Balance After Transfer</th> <!--After Deposit-->
+                <th>Target Acount ID</th> 
+                <th>Balance Before Transfer</th>    <!--Before Transfer-->
+                <th>Balance After Transfer</th>
             </tr>
-            <tr>
-            <!--Code to be added-->
-            <!--<tr *ngFor="let book of books">
-                <td>{{ book.id }}</td>
-                <td>{{ book.title }}</td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.price }}</td>-->
-                </tr>
-            <tr>
-             <th>Target Acount ID</th> 
-             <th>Balance Before Transfer</th>    <!--Before Transfer-->
-              <th>Balance After Transfer</th>
-    
-             </tr>
              <tr>
-            <!--Code to be added-->
-            <!--<tr *ngFor="let book of books">
-                <td>{{ book.id }}</td>
-                <td>{{ book.title }}</td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.price }}</td>-->
-                </tr>
-            <tr>
-            </tr>
-            <tr>
-            </tr>
-            <tr>
-            </tr>
+                <td>{{this.sourceAccount.Acct_Id}}</td>
+                <td>{{ this.sourceAccount.Balance}}</td>
+                <td>{{ this.getNewBalance("source")}}</td>
+                <td>{{ this.form.get('target').value }}</td>
+                <td>{{ this.targetAccount.Balance }}</td>
+                <td>{{ this.getNewBalance("target")}}</td>
+
+                
+                
             
                 <td> 
                     <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller">Back</button> 
                 </td>
+            </tr>    
         </table>
         <hr>
     </div>
