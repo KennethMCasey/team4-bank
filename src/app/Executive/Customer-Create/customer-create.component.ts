@@ -18,21 +18,14 @@ export class CustomerCreateComponent implements OnInit
   }
   ngOnInit(){
     this.form = new FormGroup({
-        ssn: new FormControl("Requires SSN",  [Validators.required]),
-        name: new FormControl("name", [Validators.required]),
-        age: new FormControl("fsd", [Validators.required]),
-        address1: new FormControl("sdfg", [Validators.required]),
-        city: new FormControl("sfdg", [Validators.required]),
+        ssn: new FormControl("",  [Validators.required]),
+        name: new FormControl("", [Validators.required]),
+        age: new FormControl("", [Validators.required]),
+        address1: new FormControl("", [Validators.required]),
+        address2: new FormControl("", [Validators.required]),
+        city: new FormControl("", [Validators.required]),
         state: new FormControl("", [Validators.required])
     });
-    // onSubmit(this.customer)
-    // {
-    //   this.customerService.addCustomer(this.customer).subscribe(
-    //     (response) => console.log('Record Inserted'),
-    //     (error) => console.log(error)
-    //    )
-    //    this.router.navigate(['/']);
-    // }
 }
 
   public customer:Customer
@@ -40,7 +33,18 @@ export class CustomerCreateComponent implements OnInit
   public postCustomer() 
   {
     this.operationInProgress(true)
-    this.customerService.addCustomer(this.customer).subscribe(() =>{this.operationInProgress(false);  this.operationComplete(true, null); this.router.navigateByUrl('/')}, (error) => { this.operationInProgress(false); this.operationComplete(false, error)})
+
+    this.customer = new Customer()
+    this.customer.SSN = this.form.get('ssn').value
+    this.customer.Name = this.form.get('name').value
+    this.customer.Age = this.form.get('age').value
+    this.customer.Address = `Address Line One: ${this.form.get('address1').value}\n
+    Address Line Two: ${this.form.get('address2').value}\n
+    City: ${this.form.get('city').value}\n
+    State: ${this.form.get('state').value}`
+
+    console.log(this.customer)
+    this.customerService.addCustomer(this.customer).subscribe(() =>{this.operationInProgress(false);  this.operationComplete(true, null); this.router.navigateByUrl('/')}, (error) => { this.operationInProgress(false); this.operationComplete(false, JSON.stringify(error))})
   }
 
   private operationInProgress(yesno:Boolean) 
@@ -50,6 +54,6 @@ export class CustomerCreateComponent implements OnInit
 
   private operationComplete(success:Boolean, message:string)
   {
-    alert("The Operation Was " + success ? "" : "Not " + "Successful." + message == null ? "" : ("\nInfo: " + message)) 
+    alert("The Operation Was " + (success ? "" : "Not " + "Successful.") + (message == null ? "" : ("\nInfo: " + message))) 
   }
 }

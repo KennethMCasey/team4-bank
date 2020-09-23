@@ -7,7 +7,7 @@
   <div class="col s6 offset-s3">
     <div class="card">
       <div class="card-content">
-        <form [formGroup]="form">
+        <form [formGroup]="form" (ngSubmit)="postAccount()">
           <div class="form-group">
             <div class="input-field col s12">
               <input id="customerID" formControlName="customerID" type="number" class="form-control" ngModel pattern="[\d]{9}">
@@ -19,7 +19,7 @@
 
           <div class="form-group">
             <label for="website">Account Type</label>
-            <select formControlName="Acct_Type" class="form-control">
+            <select id="Acct_Type" formControlName="Acct_Type" class="form-control">
               <option>Checking</option>
               <option>Savings</option>
             </select>
