@@ -35,8 +35,9 @@ export class CustomerUpdateComponent
         this.form.get('name').setValue(this.customer.Name)
         this.form.get('age').setValue(this.customer.Age)
         this.form.get('address').setValue(this.customer.Address)
+        this.form.enable()
       },
-      (error) => {alert('Error finding customer: ' + JSON.stringify(error)); this.form.enable()}//delete enable line after hooked up to data
+      (error) => {alert('Error finding customer: ' + JSON.stringify(error));  this.form.enable()}//delete enable line after hooked up to data
       
     )
 

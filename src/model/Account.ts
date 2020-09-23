@@ -7,4 +7,6 @@ public Balance:number
 public CR_Date:string
 public TR_Last_Date:string
 public Duration:number
+
+
 }

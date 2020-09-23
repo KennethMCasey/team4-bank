@@ -43,9 +43,9 @@ export class AccountService {
     return this.httpClient.get<Account[]>(this.apiEndpoint.Accounts);
   }
 
- // Get one Account (5.2.1) 
-  getAccount(QueryValue: QueryValues,id:number): Observable<Account> {
-    return this.httpClient.get<Account>(`${this.apiEndpoint.Accounts}${QueryValue}/${id}`);
+ // Get one or more Account (5.2.1) 
+  getAccount(QueryValue: QueryValues,id:number): Observable<Account[]> {
+    return this.httpClient.get<Account[]>(`${this.apiEndpoint.Accounts}${QueryValue}/${id}`);
   }
 
  // Delete one Account (5.1.6)

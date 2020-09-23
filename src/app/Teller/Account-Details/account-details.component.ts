@@ -10,7 +10,7 @@ import {Account} from 'src/model/Account'
 
 export class AccountDetailsComponent 
 {
-  public account:Account
+  public account:Account[]
 
  //Place Holder
  constructor(private acccountService:AccountService) 

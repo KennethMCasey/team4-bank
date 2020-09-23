@@ -8,6 +8,7 @@
     <div class="card">
       <div class="card-content">
         <form [formGroup]="form" (ngSubmit)="postAccount()">
+          
           <div class="form-group">
             <div class="input-field col s12">
               <input id="customerID" formControlName="customerID" type="number" class="form-control" ngModel pattern="[\d]{9}">
@@ -18,12 +19,17 @@
           </div>
 
           <div class="form-group">
-            <label for="website">Account Type</label>
-            <select id="Acct_Type" formControlName="Acct_Type" class="form-control">
-              <option>Checking</option>
-              <option>Savings</option>
-            </select>
+            <div class="input-field col s12">
+              <select id="Acct_Type" formControlName="Acct_Type" class="form-control">
+                <option>Checking</option>
+                <option>Savings</option>
+              </select>
+            </div>  
+            <div>
+              <label class="col-sm-6 control-label"  for="Acct_Type">Account Type</label>
+            </div>
           </div>
+
           <div class="form-group">
             <div class="input-field col s12">
               <input id="depositAmount" formControlName="depositAmount" type="number" class="form-control">
@@ -32,6 +38,7 @@
               <label class="col-sm-6 control-label" for="depositAmount"> Deposit Amount </label>
             </div>
           </div>
+
           <div class="row">
             <div class="input-field col s12">
               <button class="btn-large btn-submit" type="submit" [disabled]="!form.valid">Submit</button>

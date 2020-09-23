@@ -15,8 +15,10 @@ export class AccountMasterComponent
 
   constructor(private accountService:AccountService)
   {
+    
     this.accountList = null
     this.hasError = false
     accountService.getAccounts().subscribe((result) => {this.accountList = result}, (error) => {alert("Error in fetching Accounts.\nInfo: " + error)})
+    
   }
 }

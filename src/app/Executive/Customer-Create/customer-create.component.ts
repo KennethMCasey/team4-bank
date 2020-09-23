@@ -22,7 +22,7 @@ export class CustomerCreateComponent implements OnInit
         name: new FormControl("", [Validators.required]),
         age: new FormControl("", [Validators.required]),
         address1: new FormControl("", [Validators.required]),
-        address2: new FormControl("", [Validators.required]),
+        address2: new FormControl(""),
         city: new FormControl("", [Validators.required]),
         state: new FormControl("", [Validators.required])
     });
