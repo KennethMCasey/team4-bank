@@ -5,12 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BankProject.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20200922202556_UserAuthentication")]
-    partial class UserAuthentication
+    [Migration("20200923145323_Fixed")]
+    partial class Fixed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

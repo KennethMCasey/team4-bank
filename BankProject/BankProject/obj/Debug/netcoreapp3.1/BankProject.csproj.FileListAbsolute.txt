@@ -309,3 +309,4 @@ C:\Users\Vincent\Documents\GitHub\team4-bank\BankProject\BankProject\bin\Debug\n
 C:\Users\Vincent\Documents\GitHub\team4-bank\BankProject\BankProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Vincent\Documents\GitHub\team4-bank\BankProject\BankProject\obj\Debug\netcoreapp3.1\BankProject.csproj.CoreCompileInputs.cache
 C:\Users\Vincent\Documents\GitHub\team4-bank\BankProject\BankProject\obj\Debug\netcoreapp3.1\BankProject.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Vincent\Documents\GitHub\team4-bank\BankProject\BankProject\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll

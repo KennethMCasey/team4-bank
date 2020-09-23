@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BankProject.Models;
 using BankProject.Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BankProject.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomersController : ControllerBase
@@ -28,7 +30,7 @@ namespace BankProject.Controllers
         {
             return _repo.GetCustomers();
         }
-
+        [Authorize(Roles = UserRoles.Executive)]
         // POST: api/Customers
         [HttpPost]
         public ActionResult<Customer> PostCustomer(Customer customer)
@@ -52,7 +54,7 @@ namespace BankProject.Controllers
 
             return customer;
         }
-
+        [Authorize(Roles = UserRoles.Executive)]
         // PUT: api/Customers/5
         [HttpPut("{id}")]
         public IActionResult PutCustomer(int id, Customer customer)
@@ -63,7 +65,7 @@ namespace BankProject.Controllers
 
             return NoContent();
         }
-
+        [Authorize(Roles = UserRoles.Executive)]
         // DELETE: api/Customers/5
         [HttpDelete("{id}")]
         public ActionResult<Customer> DeleteCustomer(int id)

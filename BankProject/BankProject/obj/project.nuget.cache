@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LeiYcv/ziCNWPfEz+HolzQAa5AEfJWwu6f571TnU7phKPDFTJq5weLsjBa5k/bN9h19d89xYQzGQHTiFnqjYhA==",
+  "dgSpecHash": "oHaCQB0gWWZQeKkGDwIivIex4H4S2eJ/kXLFCvyd29yjndXQt3UDUD1hx4EqDveAGJfLXTNQOhWZwLp8ni0Qtw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Vincent\\Documents\\GitHub\\team4-bank\\BankProject\\BankProject\\BankProject.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Vincent\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Vincent\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
     "C:\\Users\\Vincent\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\Vincent\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.8\\microsoft.aspnetcore.authentication.jwtbearer.3.1.8.nupkg.sha512",
     "C:\\Users\\Vincent\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.8\\microsoft.aspnetcore.cryptography.internal.3.1.8.nupkg.sha512",
     "C:\\Users\\Vincent\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.8\\microsoft.aspnetcore.cryptography.keyderivation.3.1.8.nupkg.sha512",
     "C:\\Users\\Vincent\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",

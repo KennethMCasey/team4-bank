@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BankProject.Models;
 using BankProject.Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BankProject.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/")]
     [ApiController]
     public class AccountsController : ControllerBase
@@ -21,7 +23,7 @@ namespace BankProject.Controllers
         {
             _repo = context;
         }
-
+        [Authorize(Roles = UserRoles.Executive)]
         // POST: api/Accounts
         [HttpPost]
         public ActionResult<Account> PostAccount(CreateAccountModel accountCreate)
@@ -62,7 +64,7 @@ namespace BankProject.Controllers
         {
             return _repo.GetAccountByAccountId(aid);
         }
-
+        [Authorize(Roles = UserRoles.Executive)]
         // DELETE api/Accounts/aid/888
         [HttpDelete("aid/{aid}")]
         public ActionResult<Account> DeleteAccountByAccountId(int aid)

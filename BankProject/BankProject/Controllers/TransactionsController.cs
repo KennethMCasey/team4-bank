@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using BankProject.Models;
 using BankProject.Repository;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankProject.Controllers
 {
+    [Authorize(Roles = UserRoles.Cashier)]
     [Route("api/[controller]")]
     [ApiController]
     public class TransactionsController : ControllerBase
