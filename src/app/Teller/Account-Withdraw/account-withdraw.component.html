@@ -17,7 +17,14 @@
     <form  name="form" #registerForm="ngForm" [formGroup]="form" (ngSubmit)="postTransaction()">
     <div class="row">
     <div class="input-field col s12">
-    <input formControlName="amount" type="number" name="amount">
+    <input formControlName="amount" type="number" name="amount" ngModel pattern="[\d]+">
+    <div *ngIf="form.get('amount').invalid && form.get('amount').touched" class="alert alert-danger">
+        <div *ngIf="form.get('amount').errors.required"> Customer Deposit is required.</div>
+        <!-- <div *ngIf="form.get('amount').errors.pattern === true"> Customer Deposit should be a positve value.</div> -->
+        <div *ngIf="form.get('amount').errors.max"> Customer Deposit has a max size of 20 numbers.</div>
+        <div *ngIf="form.get('amount').errors.min"> Customer Deposit should be a positve value.</div>
+        
+       </div>
     <label> Withdraw Amount</label>
     </div>
     </div>

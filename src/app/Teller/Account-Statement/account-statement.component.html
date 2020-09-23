@@ -19,7 +19,11 @@
     <form [formGroup]="form" name="updateForm" #registerForm="ngForm" (ngSubmit)="getTransaction()">
     <div class="row">
     <div class="input-field col s12">
-    <input formControlName="Acct_Id" type="number" name="SSN">
+    <input formControlName="Acct_Id" type="number" name="Acct_Id" ngModel pattern="[0-9]{9}">
+    <div *ngIf="form.get('Acct_Id').invalid && form.get('Acct_Id').touched" class="alert alert-danger">
+        <div *ngIf="form.get('Acct_Id').errors.required"> Account ID is required.</div>
+        <div *ngIf="form.get('Acct_Id').errors.pattern"> Account ID should be a 9 digit number.</div>
+    </div>
     <label>Account ID</label>
     </div>
     </div>

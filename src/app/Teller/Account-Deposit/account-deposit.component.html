@@ -17,9 +17,11 @@
                             <input type="number" name="amount" formControlName="amount" ngModel pattern="[\d]+">
                             <div *ngIf="form.get('amount').invalid && form.get('amount').touched" class="alert alert-danger">
                                 <div *ngIf="form.get('amount').errors.required"> Customer Deposit is required.</div>
-                                <div *ngIf="form.get('amount').errors.maxLength"> Customer Deposit has a max size of 20 numbers.</div>
-                                <div *ngIf="form.get('amount').errors.pattern"> Customer Deposit should be a positve value.</div>
-                            </div>
+                                <!-- <div *ngIf="form.get('amount').errors.pattern === true"> Customer Deposit should be a positve value.</div> -->
+                                <div *ngIf="form.get('amount').errors.max"> Customer Deposit has a max size of 20 numbers.</div>
+                                <div *ngIf="form.get('amount').errors.min"> Customer Deposit should be a positve value.</div>
+                                
+                               </div>
                             <label class="col-sm-6 control-label" for="amount"> Deposit Amount</label>
                         </div>
                     </div>

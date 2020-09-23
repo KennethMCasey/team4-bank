@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {TransactionService} from 'src/service/transaction.service'
 import {Transactions} from 'src/model/Transactions'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -13,7 +13,7 @@ import {Router, ActivatedRoute} from '@angular/router'
   styleUrls: ['./account-withdraw.component.css']
 })
 
-export class AccountWithdrawComponent 
+export class AccountWithdrawComponent implements OnInit
 {
   form:FormGroup
   account:Account
@@ -22,7 +22,7 @@ export class AccountWithdrawComponent
   {
     this.form = new FormGroup
     ({
-      amount: new FormControl( "",  [Validators.required])
+      amount: new FormControl( "",  [Validators.required, Validators.max(99999999999999999999), Validators.min(0)])
     })
   }
 
