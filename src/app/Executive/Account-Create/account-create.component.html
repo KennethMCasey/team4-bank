@@ -12,6 +12,10 @@
           <div class="form-group">
             <div class="input-field col s12">
               <input id="customerID" formControlName="customerID" type="number" class="form-control" ngModel pattern="[\d]{9}">
+              <div *ngIf="form.get('customerID').invalid && form.get('customerID').touched" class="alert alert-danger">
+                <div *ngIf="form.get('customerID').errors.required"> Customer ID is required.</div>
+                <div *ngIf="form.get('customerID').errors.pattern"> Customer ID should have 9 numbers.</div>
+               </div>
             </div>
             <div>
               <label class="col-sm-6 control-label" for="customerID"> Customer ID </label>
@@ -24,6 +28,10 @@
                 <option>Checking</option>
                 <option>Savings</option>
               </select>
+              <div *ngIf="form.get('Acct_Type').invalid && form.get('Acct_Type').touched" class="alert alert-danger">
+                <div *ngIf="form.get('Acct_Type').errors.required"> Customer Account Type is required.</div>
+              
+               </div>
             </div>  
             <div>
               <label class="col-sm-6 control-label"  for="Acct_Type">Account Type</label>
@@ -32,7 +40,12 @@
 
           <div class="form-group">
             <div class="input-field col s12">
-              <input id="depositAmount" formControlName="depositAmount" type="number" class="form-control">
+              <input id="depositAmount" formControlName="depositAmount" type="number" class="form-control" ngModel pattern="[\d]+">
+              <div *ngIf="form.get('depositAmount').invalid && form.get('depositAmount').touched" class="alert alert-danger">
+                <div *ngIf="form.get('depositAmount').errors.required"> Customer Deposit is required.</div>
+                <div *ngIf="form.get('depositAmount').errors.pattern"> Customer Deposit should be a positve value.</div>
+                <div *ngIf="form.get('depositAmount').errors.maxLength"> Customer Deposit has a max size of 20 numbers.</div>
+               </div>
             </div>
             <div>
               <label class="col-sm-6 control-label" for="depositAmount"> Deposit Amount </label>

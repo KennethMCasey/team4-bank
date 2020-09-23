@@ -26,7 +26,7 @@ form: FormGroup
  
   ngOnInit() {
     this.form = new FormGroup({
-      depositAmount: new FormControl("", [Validators.required]),
+      depositAmount: new FormControl("", [Validators.required, Validators.maxLength(20)]),
       customerID: new FormControl("", [Validators.required]),
       Acct_Type: new FormControl("", [Validators.required])
     });
