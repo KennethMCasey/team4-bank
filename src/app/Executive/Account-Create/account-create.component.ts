@@ -22,7 +22,13 @@ form: FormGroup
         Acct_Type: new FormControl('', Validators.required)
       });
   }
-
+ 
+  ngOnInit() {
+    this.form = new FormGroup({
+      depositAmount: new FormControl("", [Validators.required]),
+      customerID: new FormControl("", [Validators.required]),
+    });
+  }
   public postAccount() 
   {
     this.operationInProgress(true)
