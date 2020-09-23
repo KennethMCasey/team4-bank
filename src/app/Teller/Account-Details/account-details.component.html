@@ -11,7 +11,7 @@
     <div class="col s6 offset-s3">
     <div class="card">
     <div class="card-content">
-    <form  name="updateForm" #registerForm="ngForm">
+    <form [formGroup]="form" name="updateForm" #registerForm="ngForm" (ngSubmit)="getAccount(this.form.get('Id_Type').value, this.form.get('id').value)">
     <div class="form-group">
      <label for="role">Choose ID</label>
                 <select formControlName="Id_Type" class="form-control">
@@ -22,13 +22,13 @@
             </div>
     <div class="row">
     <div class="input-field col s12">
-    <input type="text" name="SSN">
+    <input formControlName="id" type="text" name="id" ngModel pattern="[0-8]{9}">
     <label> ID</label>
     </div>
     </div>
     <div class="row">
     <div class="input-field col s12">
-    <button class="btn-large btn-submit" type="submit" [disabled]="!registerForm.valid" onClick="validateAndSend()">View</button>
+    <button class="btn-large btn-submit" type="submit" [disabled]="!registerForm.valid">View</button>
     
     </div>
     </div>
@@ -40,36 +40,28 @@
     <!--Display the 3 buttons -->
     <div class="container-fluid">
         <table>
-            <tr>
-                <th>Customer ID</th> 
-                <th>Acccount ID</th>
-                <th>Account Type</th>
-                <th>Balance</th>
-            </tr>
-            <tr>
-            </tr>
-            <tr>
-            </tr>
-            <tr>
-            </tr>
-            <tr>
-            <!--Code to be added-->
-            <!--<tr *ngFor="let book of books">
-                <td>{{ book.id }}</td>
-                <td>{{ book.title }}</td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.price }}</td>-->
+           
+                <tr>
+                    <th>Customer ID</th> 
+                    <th>Acccount ID</th>
+                    <th>Account Type</th>
+                    <th>Balance</th>
                 </tr>
-                
-                <td> 
-                    <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Deposite/:id">Deposit</button> 
-                </td>
-                <td> 
-                    <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Withdraw/:id">Withdraw</button> 
-                </td>
-                <td> 
-                    <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Transfer/:id">Transfer</button> 
-                </td>
+                <tr *ngFor="let account of accounts">
+                    <td>{{ account.Cust_Id }}</td>
+                    <td>{{ account.Acct_Id }}</td>
+                    <td>{{ account.Acct_Type }}</td>
+                    <td>{{ account.Balance}}</td>
+                    <td> 
+                        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Deposit/{{account.Acct_Id}}">Deposit</button> 
+                    </td>
+                    <td> 
+                        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Withdraw/{{account.Acct_Id}}">Withdraw</button> 
+                    </td>
+                    <td> 
+                        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Transfer/{{account.Acct_Id}}">Transfer</button> 
+                    </td>
+                </tr>
         </table>
         <hr>
     </div>

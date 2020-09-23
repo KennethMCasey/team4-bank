@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AccountService, QueryValues} from 'src/service/account.service'
 import {Account} from 'src/model/Account'
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,17 @@ import {Account} from 'src/model/Account'
 
 export class AccountDetailsComponent 
 {
-  public account:Account[]
+  public accounts:Account[]
+  public form:FormGroup
+
+ngOnInit()
+{
+  this.form = new FormGroup
+  ({
+    Id_Type: new FormControl( "",  [Validators.required]),
+    id: new FormControl( "",  [Validators.required])
+  })
+}
 
  //Place Holder
  constructor(private acccountService:AccountService) 
@@ -18,20 +29,35 @@ export class AccountDetailsComponent
  
  }
 
- getAccount(accountSearchId:number) 
+ public getAccount(queryValue:string, accountSearchId:number) 
  {
-  this.acccountService.getAccount(QueryValues.Acct_Id, accountSearchId).subscribe
+this.accounts = new Array<Account>()
+this.accounts.push(
+{
+Acct_Id:66,
+Cust_Id:66, 
+Acct_Type:"saving",
+Balance:66,
+CR_Date:"8",
+TR_Last_Date:"8",
+Duration:8
+})
+  
+/*
+  this.acccountService.getAccount(queryValue, accountSearchId).subscribe
   (
      (result) => 
      {
-       this.account = result;
-       if (this.account == null) alert("No Account Found  with Id " + accountSearchId)
+       this.accounts = result;
+       if (this.accounts == null) alert("No Account Found  with Id " + accountSearchId)
      },
      (error) => 
      {
-       alert("There was an error during your request:\n" + error)
+       alert("There was an error during your request:\n" + JSON.stringify(error))
      }
   )
+  */
  }
+ 
 
 }

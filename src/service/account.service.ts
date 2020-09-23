@@ -44,8 +44,14 @@ export class AccountService {
   }
 
  // Get one or more Account (5.2.1) 
-  getAccount(QueryValue: QueryValues,id:number): Observable<Account[]> {
-    return this.httpClient.get<Account[]>(`${this.apiEndpoint.Accounts}${QueryValue}/${id}`);
+  getAccount(queryValue: string,id:number): Observable<Account[]> 
+  {
+    if (queryValue == "Customer ID") queryValue = "cid"
+    if (queryValue == "SSN ID") queryValue = "ssn"
+    if (queryValue == "Account ID") queryValue = "cid"
+    if (queryValue == "cid" || queryValue == "ssn" || queryValue == "aid")
+    return this.httpClient.get<Account[]>(`${this.apiEndpoint.Accounts}${queryValue}/${id}`);
+    else return null
   }
 
  // Delete one Account (5.1.6)
