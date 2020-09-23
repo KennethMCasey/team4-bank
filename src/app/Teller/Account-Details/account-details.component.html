@@ -1,4 +1,94 @@
-<h1>Account Details Screen - Main Screen</h1>
+<!--<h1>Account Details Screen - Main Screen</h1>
 <p>This is the main screen for the Teller. From here they will have controls to Deposit Transfer And Withdraw Screen</p>
-<p>This screen is just a single search box, do not get all accounts here the Teller has to search for a specific account here</p>
+<p>This screen is just a single search box, do not get all accounts here the Teller has to search for a specific account here</p>-->
 
+
+<!-- NavBar-->
+<nav class="blue-grey">
+    <div class="nav-wrapper">
+    <a href="#" class="brand-logo center">Team4-Bank</a>
+    <ul id="nav-mobile" class="right hand-on-med-and-down">
+    <li>
+    <a routerLink="/Login">Logout</a>
+    </li>
+    </ul>
+    </div>
+    </nav>
+    <!--Heading-->
+    <div class="brand-logo center">
+    <h3>Account Details</h3>
+    </div>
+    <!--Form-->
+    <div class="container">
+    <div class="col s6 offset-s3">
+    <div class="card">
+    <div class="card-content">
+    <form  name="updateForm" #registerForm="ngForm">
+    <div class="form-group">
+     <label for="role">Choose ID</label>
+                <select formControlName="Id_Type" class="form-control">
+                    <option>Customer ID</option>
+                    <option>SSN ID</option>
+                    <option>Account ID</option>
+                </select>
+            </div>
+    <div class="row">
+    <div class="input-field col s12">
+    <input type="text" name="SSN">
+    <label> ID</label>
+    </div>
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
+    <button class="btn-large btn-submit" type="submit" [disabled]="!registerForm.valid" onClick="validateAndSend()">View</button>
+    
+    </div>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    
+    <!--Display the 3 buttons -->
+    <div class="container-fluid">
+        <table>
+            <tr>
+                <th>Customer ID</th> 
+                <th>Acccount ID</th>
+                <th>Account Type</th>
+                <th>Balance</th>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+            <!--Code to be added-->
+            <!--<tr *ngFor="let book of books">
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.price }}</td>-->
+                </tr>
+                
+                <td> 
+                    <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Deposite/:id">Deposit</button> 
+                </td>
+                <td> 
+                    <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Withdraw/:id">Withdraw</button> 
+                </td>
+                <td> 
+                    <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Transfer/:id">Transfer</button> 
+                </td>
+        </table>
+        <hr>
+    </div>
+    
+      <!-- Footer -->
+       <footer class="whitesection" id="footer">
+        <div class="container-fluid">
+          <p style="text-align:center">© Copyright 2020 Team4</p>
+        </div>
+        </footer>
