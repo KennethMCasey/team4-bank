@@ -81,18 +81,13 @@
                 <th>Transaction Description</th>
                 <th>Balance</th>
             </tr>
-            <tr>
-             <!--Code to be added-->
-            <!--<tr *ngFor="let book of books">
-                <td>{{ book.id }}</td>
-                <td>{{ book.title }}</td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.price }}</td>-->
-            </tr>
-             <td>
-               <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller">Back</button> 
-                </td>
+            <tr *ngFor="let transaction of this.transactions">
+                <td>{{ transaction.Tran_Date }}</td>
+                <td>Source Account:{{ transaction.Source_Acct }} Target Account: {{transaction.Target_Acct}}</td>
+                <td>{{ transaction.Amount }}</td>
+            </tr>    
         </table>
+        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller">Back</button> 
         <hr>
     </div>
     
