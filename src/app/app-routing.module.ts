@@ -65,7 +65,7 @@ const routes: Routes = [
     path: 'Executive/Customer',
     component: CustomerMasterComponent,
     canActivate: [AuthGuard],
-    data: { roles: [Role.Executive], newprop: "astring" }
+    data: { roles: [Role.Executive] }
   },
   {
     path: 'Executive/Customer/Create',
@@ -87,7 +87,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,  {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

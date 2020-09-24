@@ -14,12 +14,17 @@ import { Role } from 'src/model/Role';
 export class LoginComponent implements OnInit
 {
 
-  
   form: FormGroup;
   emailPattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+
   constructor(private authService: AuthenticationService, private router:Router ) {  }
 
   ngOnInit(){
+
+    if (this.authService.currentUserValue != null) {
+      this.router.navigateByUrl('/');
+    }
+
     this.form = new FormGroup({
       Email: new FormControl("",  [Validators.required]),
       Password: new FormControl("", [Validators.required])
@@ -33,7 +38,7 @@ export class LoginComponent implements OnInit
     this.authService.login(this.form.get('Email').value, this.form.get('Password').value).subscribe(
 
       (user) => {
-        this.router.navigateByUrl('/');
+        location.reload();
       },
 
       (error) => {

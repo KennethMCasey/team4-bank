@@ -20,8 +20,6 @@ export class AccountStatementComponent {
   public form: FormGroup;
   ngOnInit() {
     this.form = new FormGroup({
-      QueryType_num: new FormControl(''),
-      QueryType_date: new FormControl(''),
       Num1: new FormControl(''),
       Num2: new FormControl(''),
       Date1: new FormControl(''),

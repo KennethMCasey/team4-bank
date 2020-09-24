@@ -27,18 +27,27 @@
     <label>Account ID</label>
     </div>
     </div>
+
+    
     <div class="radio"> 
-                <label>  
-                    <input formControlName="QueryType_num" type="radio"  value="By Transactions" (click)="setradio('By Transactions')" [checked]='true' ngModel>  
-                    By Transactions
-                </label>  
-            </div> 
-           <div class="radio">
-                <label>  
-                    <input formControlName="QueryType_date" type="radio" value="By Date" (click)="setradio('By Date')" [checked]='true' ngModel>  
-                    By Date 
-                </label>  
-           </div>  
+        <label>
+            <input id="QueryType_num" style="opacity: 1;" name="QueryType" [checked]="true"
+            type="radio"  value="By Transactions" (click)="setradio('By Transactions')">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            By Transactions
+         </label>  
+        
+    </div> 
+    
+    <div class="radio">
+        <label>
+            <input id="QueryType_date" style="opacity: 1;" name="QueryType" 
+            type="radio" value="By Date" (click)="setradio('By Date')" > 
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            By Date
+        </label>      
+    </div>  
+
     <div *ngIf="isSelected('By Transactions')" >  
        <div class="row">
     <div class="input-field col s12">
@@ -86,14 +95,16 @@
                 <th>Balance</th>
             </tr>
             <tr *ngFor="let transaction of this.transactions">
-                <td>{{ transaction.tranDate }}</td>
-                <td>
-                    Source Account: {{ transaction.sourceAcct }} <br> 
-                    Target Account: {{ transaction.targetAcct}} <br>
+                <td>{{ transaction.tranDate.replace("T", " ") }}</td>
+                <td *ngIf="transaction.targetAcct == null">
+                    {{transaction.amount >= 0 ? "Deposit" : "Withdrawal"}}
                 </td>
-                <td>{{ transaction.amount }}</td>
+                <td *ngIf="transaction.targetAcct != null">
+                    Source Account: {{ transaction.sourceAcct }} <br> 
+                    Target Account: {{ transaction.targetAcct }} <br>
+                </td>
+                <td>${{ transaction.amount }}</td>
             </tr>    
         </table>
-        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller">Back</button> 
         <hr>
     </div>

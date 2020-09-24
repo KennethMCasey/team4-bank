@@ -2,75 +2,116 @@
 <p>This is the main screen for the Teller. From here they will have controls to Deposit Transfer And Withdraw Screen</p>
 <p>This screen is just a single search box, do not get all accounts here the Teller has to search for a specific account here</p>-->
 
-    <!--Heading-->
-    <div class="brand-logo center">
-    <h3>Account Details</h3>
-    </div>
-    <!--Form-->
-    <div class="container">
-    <div class="col s6 offset-s3">
+<!--Heading-->
+<div class="brand-logo center">
+  <h3>Account Details</h3>
+</div>
+<!--Form-->
+<div class="container">
+  <div class="col s6 offset-s3">
     <div class="card">
-    <div class="card-content">
-    <form [formGroup]="form" name="updateForm" #registerForm="ngForm" (ngSubmit)="getAccount(this.form.get('Id_Type').value, this.form.get('id').value)">
-    <div class="form-group">
-     <label for="role">Choose ID</label>
-                <select formControlName="Id_Type" class="form-control">
-                    <option>Customer ID</option>
-                    <option>SSN</option>
-                    <option>Account ID</option>
-                </select>
-            </div>
-    <div class="row">
-    <div class="input-field col s12">
-    <input formControlName="id" type="text" name="id" ngModel pattern="[0-9]{9}">
-    <div *ngIf="form.get('id').invalid && form.get('id').touched" class="alert alert-danger">
-        <div *ngIf="form.get('id').errors.required"> ID is required.</div>
-        <div *ngIf="form.get('id').errors.pattern"> ID should be a 9 digit number.</div>
-    </div>
-    <label> ID</label>
-    </div>
-    </div>
-    <div class="row">
-    <div class="input-field col s12">
-        <button class="btn-large btn-submit" type="submit" [disabled]="!registerForm.valid">View</button>
-    </div>
-
-    </div>
-    </form>
-    
-    </div>
-    </div>
-    </div>
-    
-    <!--Display the 3 buttons -->
-    <div class="container-fluid">
-        <table>
-           
-                <tr>
-                    <th>Customer ID</th> 
-                    <th>Acccount ID</th>
-                    <th>Account Type</th>
-                    <th>Balance</th>
-                </tr>
-                <tr *ngFor="let account of accounts">
-                    <td>{{ account.custId }}</td>
-                    <td>{{ account.acctId }}</td>
-                    <td>{{ account.acctType == "C" ? "Checking" : "Savings" }}</td>
-                    <td>{{ account.balance}}</td>
-                    <td> 
-                        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Deposit/{{account.acctId}}">Deposit</button> 
-                    </td>
-                    <td> 
-                        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Withdraw/{{account.acctId}}">Withdraw</button> 
-                    </td>
-                    <td> 
-                        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Transfer/{{account.acctId}}">Transfer</button> 
-                    </td>
-                </tr>
-                <div *ngIf="accounts == null || accounts.length == 0">
-                    <p>No accounts found!</p>
+      <div class="card-content">
+        <form
+          [formGroup]="form"
+          name="updateForm"
+          #registerForm="ngForm"
+          (ngSubmit)="
+            getAccount(
+              this.form.get('Id_Type').value,
+              this.form.get('id').value
+            )
+          "
+        >
+          <div class="form-group">
+            <label for="role">Choose ID</label>
+            <select formControlName="Id_Type" class="form-control">
+              <option>Customer ID</option>
+              <option>SSN</option>
+              <option>Account ID</option>
+            </select>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input
+                formControlName="id"
+                type="text"
+                name="id"
+                ngModel
+                pattern="[0-9]{9}"
+              />
+              <div
+                *ngIf="form.get('id').invalid && form.get('id').touched"
+                class="alert alert-danger"
+              >
+                <div *ngIf="form.get('id').errors.required">
+                  ID is required.
                 </div>
-        </table>
-        <hr>
+                <div *ngIf="form.get('id').errors.pattern">
+                  ID should be a 9 digit number.
+                </div>
+              </div>
+              <label> ID</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <button
+                class="btn-large btn-submit"
+                type="submit"
+                [disabled]="!registerForm.valid"
+              >
+                View
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    
+  </div>
+
+  <!--Display the 3 buttons -->
+  <div class="container-fluid">
+    <table>
+      <tr>
+        <th>Customer ID</th>
+        <th>Acccount ID</th>
+        <th>Account Type</th>
+        <th>Balance</th>
+      </tr>
+      <tr *ngFor="let account of accounts">
+        <td>{{ account.custId }}</td>
+        <td>{{ account.acctId }}</td>
+        <td>{{ account.acctType == "C" ? "Checking" : "Savings" }}</td>
+        <td>${{ account.balance }}</td>
+        <td>
+          <button
+            class="btn btn-sm btn-outline-primary"
+            routerLink="/Teller/Deposit/{{ account.acctId }}"
+          >
+            Deposit
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn btn-sm btn-outline-primary"
+            routerLink="/Teller/Withdraw/{{ account.acctId }}"
+          >
+            Withdraw
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn btn-sm btn-outline-primary"
+            routerLink="/Teller/Transfer/{{ account.acctId }}"
+          >
+            Transfer
+          </button>
+        </td>
+      </tr>
+      <div *ngIf="accounts == null || accounts.length == 0">
+        <p>No accounts found!</p>
+      </div>
+    </table>
+    <hr />
+  </div>
+</div>

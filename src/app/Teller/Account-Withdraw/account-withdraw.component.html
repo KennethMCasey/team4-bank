@@ -48,11 +48,8 @@
             </tr>
             <tr>
                 <td>{{ this.account.acctId }}</td>
-                <td>{{ this.account.balance }}</td>
-                <td>{{ getNewBalance() }}</td>
-                <td> 
-                    <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller">Back</button> 
-                </td>
+                <td>${{ this.account.balance }}</td>
+                <td>${{ getNewBalance() }}</td>
             </tr>
         </table>
         <hr>

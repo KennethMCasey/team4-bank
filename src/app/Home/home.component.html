@@ -1,24 +1,115 @@
-
-    <!--Headings Space-->
+<!-- Public Facing -->
+<div *ngIf="!isExecutive && !isTeller">
+  <div class="container-fluid">
+    <h2 class="feature-box">
+      Retail Bank <br />
+      Management System
+    </h2>
+  </div>
+  <section class="blue-grey" id="features">
     <div class="container-fluid">
-    <marquee><h2> Retail Bank Management System  </h2></marquee>
-    </div>
-        <section class="blue-grey" id="features">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="feature-box col-lg-4">
-              <i class="icon fas fa-check-circle fa-4x"></i>
-              <h3 class="featurre-title">Easy Deposits</h3>
-            </div>
-             <div class="feature-box col-lg-4">
-              <i class="icon fas fa-bullseye fa-4x"></i>
-              <h3 class="featurre-title">View Statements</h3>
-            </div>
-              <div class="feature-box col-lg-4">
-              <i class="icon fas fa-check-circle fa-4x"></i>
-              <h3 class="featurre-title">Account Details</h3>
-            </div>
-          </div>
+      <div class="row">
+        <div class="feature-box col-lg-4">
+          <i class="icon fas fa-check-circle fa-4x"></i>
+          <h3 class="feature-title">Easy Deposits</h3>
         </div>
-      </section>
+        <div class="feature-box col-lg-4">
+          <i class="icon fas fa-bullseye fa-4x"></i>
+          <h3 class="feature-title">View Statements</h3>
+        </div>
+        <div class="feature-box col-lg-4">
+          <i class="icon fas fa-check-circle fa-4x"></i>
+          <h3 class="feature-title">Account Details</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Executive Home -->
+<div *ngIf="isExecutive">
+
+  <div class="container-fluid">
+    <h2 class="feature-box">
+      Retail Bank <br />
+      Management System
+    </h2>
+  </div>
   
+  <section class="blue-grey" id="features">
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <div class="feature-box col-lg-6">
+          <a routerLink="/Executive/Customer/Create" style="color: ghostwhite;">
+            <i class="icon fas fa-bullseye fa-3x"></i> 
+            <h3 class="feature-title">Create Customer</h3>
+          </a>
+        </div>
+
+
+        <div class="feature-box col-lg-6">
+          <a routerLink="/Executive/Account" style="color: ghostwhite;">
+            <i class="icon fas fa-eye fa-3x"></i>
+            <h3 class="feature-title">View All Accounts </h3>
+          </a>
+        </div> 
+
+      </div>
+
+      <div class="row">
+
+        <div class="feature-box col-lg-6"> 
+          <a routerLink="/Executive/Account/Create" style="color: ghostwhite;">
+            <i class="icon fas fa-bullseye fa-3x"></i>
+            <h3 class="feature-title">Create Account</h3>
+          </a>
+        </div>
+
+        <div class="feature-box col-lg-3">
+          <a routerLink="/Executive/Customer" style="color: ghostwhite;">
+            <i class="icon fas fa-eye fa-3x"></i>
+            <h3 class="feature-title">View All Customers</h3>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- Teller Home -->
+<div *ngIf="isTeller">
+ 
+  <div class="container-fluid">
+    <h2 class="feature-box">
+      Retail Bank <br />
+      Management System
+    </h2>
+  </div>
+  
+  <section class="blue-grey" id="features">
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="feature-box col-lg-6">
+          <a routerLink="/Teller/Statement" style="color: ghostwhite;">
+            <i class="icon fas fa-eye fa-4x"></i>
+            <h3 class="feature-title">View Account Statements</h3>
+          </a>
+        </div>
+        <div class="feature-box col-lg-6">
+          <a routerLink="/Teller" style="color: ghostwhite;">
+            <i class="icon fas fa-eye fa-4x"></i>
+            <h3 class="feature-title">View Account Details</h3>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>

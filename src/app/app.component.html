@@ -3,7 +3,7 @@
   <!-- Links -->
   <ul class="navbar-nav">
 
-    <a routerLink="/" class=" center navbar-brand">Team4-Bank</a>
+    <a routerLink="/" class="center navbar-brand">Team4-Bank</a>
     
     <li *ngIf="this.isTeller" class="nav-item">
       <a class="nav-link" routerLink="/Teller/Statement">Account Statements</a>
@@ -18,8 +18,8 @@
         Account
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" routerLink="/Executive/Accounts">View All</a>
-        <a class="dropdown-item" routerLink="/Executive/Accounts/Create">Create</a>
+        <a class="dropdown-item" routerLink="/Executive/Account">View All</a>
+        <a class="dropdown-item" routerLink="/Executive/Account/Create">Create</a>
       </div>
     </li>
 
@@ -29,22 +29,28 @@
         Customer
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" routerLink="/Teller">View All</a>
-        <a class="dropdown-item" routerLink="/Teller/Create">Create</a>
-        <a class="dropdown-item" routerLink="/Teller/Update">Update</a>
+        <a class="dropdown-item" routerLink="/Executive/Customer">View All</a>
+        <a class="dropdown-item" routerLink="/Executive/Customer/Create">Create</a>
       </div>
     </li>
 
     
   </ul>
 
-  <ul class="justify-content-end ml-auto">
+  <ul *ngIf="!this.isAdmin && !this.isTeller" class="justify-content-end ml-auto">
     <li class=" ml-auto navbar-right float-right text-right">
-      <a routerLink="/Login" >Logout</a>
+      <a routerLink="/Login" >Login</a>
     </li>
   </ul>
 
-  
+  <ul *ngIf="this.isAdmin || this.isTeller" class="justify-content-end ml-auto">
+    <li class=" ml-auto navbar-right float-right text-right">
+      <a (click)="logout()" >Logout</a>
+    </li>
+    <li class=" ml-auto navbar-right float-right text-right">
+      [{{userRole}}] {{ userEmail }}
+    </li>
+  </ul>
 
  
 </nav>

@@ -30,7 +30,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <p *ngIf="this.sourceAccount != null"> Source Account: {{this.sourceAccount.Acct_Id}}</p>
+                            <p *ngIf="this.sourceAccount != null"> Source Account: {{this.sourceAccount.acctId}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -71,19 +71,12 @@
                 <th>Balance After Transfer</th>
             </tr>
             <tr *ngIf="this.targetAccount != null && this.sourceAccount != null">
-                <td>{{this.sourceAccount.Acct_Id}}</td>
-                <td>{{ this.sourceAccount.Balance}}</td>
-                <td>{{ this.getNewBalance("source")}}</td>
+                <td>{{ this.sourceAccount.acctId}}</td>
+                <td>${{ this.sourceAccount.balance}}</td>
+                <td>${{ this.getNewBalance("source") }}</td>
                 <td>{{ this.form.get('target').value }}</td>
-                <td>{{ this.targetAccount.Balance }}</td>
-                <td>{{ this.getNewBalance("target")}}</td>
-
-
-
-
-                <td>
-                    <button class="btn btn-sm btn-outline-primary" routerLink="/Teller">Back</button>
-                </td>
+                <td>${{ this.targetAccount.balance }}</td>
+                <td>${{ this.getNewBalance("target") }}</td>
             </tr>
         </table>
         <hr>

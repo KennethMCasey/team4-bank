@@ -39,15 +39,29 @@ export class AccountTransferComponent implements OnInit {
   public transaction: Transactions
 
   public getNewBalance(str: string) {
-    if (str == "source") return this.sourceAccount.balance - (Number.isNaN(Number.parseInt(this.form.get('amount').value)) ? 0 : Number.parseInt(this.form.get('amount').value))
-    if (str == "target") return this.sourceAccount.balance + (Number.isNaN(Number.parseInt(this.form.get('amount').value)) ? 0 : Number.parseInt(this.form.get('amount').value))
+    console.log(this.targetAccount.balance);
+    console.log(Number.parseInt(this.form.get('amount').value)); 
+    if (str == "source") 
+      return this.sourceAccount.balance - 
+      (
+        Number.isNaN(Number.parseInt(this.form.get('amount').value)) 
+        ? 0 : Number.parseInt(this.form.get('amount').value)
+      )
+    if (str == "target") {
+      return this.targetAccount.balance +
+      (
+        Number.isNaN(Number.parseInt(this.form.get('amount').value)) 
+        ? 0  : Number.parseInt(this.form.get('amount').value)
+      )
+    }
   }
+  
 
 
   public getTargetAccount() {
     this.accountService.getAccount("Account ID", Number.parseInt(this.form.get('target').value)).subscribe
       (
-        (result) => this.sourceAccount = result[0],
+        (result) => this.targetAccount = result[0],
         (error) => {
           console.log("error: " + error)
           alert("could not get account, go back here")
@@ -63,6 +77,7 @@ export class AccountTransferComponent implements OnInit {
     this.transaction.sourceAcct = this.sourceAccount.acctId
     this.transaction.targetAcct = this.form.get('target').value
     this.transaction.amount = this.form.get('amount').value
+    this.transaction.custId = this.sourceAccount.custId;
     console.log(this.transaction)
 
     this.transactionService.addTransaction(this.transaction).subscribe(

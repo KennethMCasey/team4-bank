@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService, QueryValues } from 'src/service/account.service';
+import { AccountService } from 'src/service/account.service';
 import { Account } from 'src/model/Account';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
