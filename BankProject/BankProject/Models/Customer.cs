@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 using System.Collections.Generic;
 
 namespace BankProject.Models
@@ -17,7 +18,9 @@ namespace BankProject.Models
         public string Address { get; set; }
         public decimal? Age { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Account> Account { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Transactions> Transactions { get; set; }
     }
 }
