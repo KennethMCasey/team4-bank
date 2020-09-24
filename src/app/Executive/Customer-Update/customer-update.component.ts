@@ -12,6 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CustomerUpdateComponent implements OnInit {
   public form: FormGroup;
   public customer: Customer;
+  public inProg:boolean
 
   constructor(
     private customerService: CustomerService,
@@ -70,7 +71,10 @@ export class CustomerUpdateComponent implements OnInit {
     );
   }
 
-  private operationInProgress(yesno: Boolean) {}
+  private operationInProgress(yesno: boolean) 
+  {
+    this.inProg = yesno
+  }
 
   private operationComplete(success: Boolean, message: string) {
     alert(

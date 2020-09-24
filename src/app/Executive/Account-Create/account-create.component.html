@@ -1,6 +1,6 @@
 <!--Heading-->
 <div class="brand-logo center">
-  <h3>Create Acount</h3>
+  <h3>Create Acount </h3> <div ngIf="this.inProg" class="spinner-border"></div>
 </div>
 <!--Form-->
 <div class="container">
@@ -8,7 +8,6 @@
     <div class="card">
       <div class="card-content">
         <form [formGroup]="form" (ngSubmit)="postAccount()">
-          
           <div class="form-group">
             <div class="input-field col s12">
               <input id="customerID" formControlName="customerID" type="number" class="form-control" ngModel pattern="[\d]{9}">

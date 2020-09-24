@@ -16,7 +16,7 @@ import { Account } from 'src/model/Account';
 })
 export class AccountCreateComponent {
   form: FormGroup;
-
+  public inProg:boolean;
   public account: Account;
 
   constructor(private accountService: AccountService, private router: Router) {
@@ -60,8 +60,8 @@ export class AccountCreateComponent {
     );
   }
 
-  private operationInProgress(yesno: Boolean) {
-    //update UI
+  private operationInProgress(yesno: boolean) {
+    this.inProg = yesno
   }
 
   private operationComplete(success: Boolean, message: string) {

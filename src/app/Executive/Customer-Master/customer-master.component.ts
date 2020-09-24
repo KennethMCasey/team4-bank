@@ -4,6 +4,7 @@ import { Customer } from 'src/model/Customer';
 import { TransactionService } from 'src/service/transaction.service';
 import { CONTEXT_NAME } from '@angular/compiler/src/render3/view/util';
 import { Router } from '@angular/router';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class CustomerMasterComponent implements OnInit
 {
   public customerList: Customer[];
-
+  public inProg:boolean
   constructor(
     private customerService: CustomerService,
     private transactionService: TransactionService
@@ -34,8 +35,10 @@ export class CustomerMasterComponent implements OnInit
   }
 
   getLastUpdated(cid: number) {
+    this.inProg = true
     this.customerService.getCustomerUpdate(cid).subscribe(
       (lastDate) => {
+        this.inProg = false
         if (lastDate !== null)
         {
           console.log('result:' + lastDate);
@@ -47,6 +50,7 @@ export class CustomerMasterComponent implements OnInit
     },
         
       (error) => {
+        this.inProg = false
         console.log('error: ' + error);
       }
     );
@@ -55,12 +59,15 @@ export class CustomerMasterComponent implements OnInit
   onDelete(custId: number) {
 
     if (confirm('Are you sure you want to delete this entry?')) {
+      this.inProg = true
       this.customerService.deleteCustomer(custId).subscribe(
         (res) => {
+          this.inProg = false
           alert('Customer deleted!');
           this.ngOnInit();
         },
         (error)  => {
+          this.inProg = false
           console.log( JSON.stringify(error) );
           alert('Error: Not Deleted');
         }

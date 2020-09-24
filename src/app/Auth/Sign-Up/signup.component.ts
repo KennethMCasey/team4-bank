@@ -10,11 +10,9 @@ export class SignupComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
+    alert("No Sign Ups Permitted")
   }
-  //OnSubmit()
-  //{
-
-  //}
 
 }

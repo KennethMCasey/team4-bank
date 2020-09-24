@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class CustomerCreateComponent implements OnInit {
   form: FormGroup;
+  public inProg:boolean
   constructor(
     private customerService: CustomerService,
     private router: Router
@@ -61,7 +62,10 @@ export class CustomerCreateComponent implements OnInit {
     );
   }
 
-  private operationInProgress(yesno: Boolean) {}
+  private operationInProgress(yesno: boolean) 
+  {
+    this.inProg = yesno
+  }
 
   private operationComplete(success: Boolean, message: string) {
     alert(

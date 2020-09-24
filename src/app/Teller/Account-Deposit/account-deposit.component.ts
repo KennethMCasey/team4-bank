@@ -14,6 +14,7 @@ import { Account } from 'src/model/Account';
 export class AccountDepositComponent {
   public form: FormGroup;
   public account: Account;
+  public inProg:boolean
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -84,7 +85,8 @@ export class AccountDepositComponent {
     );
   }
 
-  private inProgress(yesno: boolean) {
-    //TODO: update UI Here
+  private inProgress(yesno: boolean) 
+  {
+    this.inProg = yesno
   }
 }

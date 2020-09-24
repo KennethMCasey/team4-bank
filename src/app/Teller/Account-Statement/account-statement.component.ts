@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AccountStatementComponent {
   public transactions: Transactions[];
+  inProg:boolean
 
   constructor(
     private transactionService: TransactionService,
@@ -82,7 +83,10 @@ export class AccountStatementComponent {
     }
   }
 
-  private inProgress(yesno: boolean) {}
+  private inProgress(yesno: boolean) 
+  {
+    this.inProg = yesno
+  }
 
   getTransactionsFilterDate(
     accountId: number,

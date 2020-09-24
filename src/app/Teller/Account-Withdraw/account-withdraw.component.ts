@@ -17,6 +17,7 @@ export class AccountWithdrawComponent implements OnInit
 {
   form:FormGroup
   account:Account
+  inProg:boolean
 
   ngOnInit()
   {
@@ -57,6 +58,6 @@ export class AccountWithdrawComponent implements OnInit
 
   private inProgress(yesno:boolean) 
   {
-    //update UI Here
+    this.inProg = yesno
   }
 }

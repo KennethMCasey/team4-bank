@@ -15,6 +15,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 
 export class AccountTransferComponent implements OnInit {
 
+  public inProg:boolean
   public form: FormGroup
   public sourceAccount: Account
   public targetAccount: Account
@@ -85,7 +86,8 @@ export class AccountTransferComponent implements OnInit {
        (error) => {console.log(error); this.inProgress(false); alert("There was an error:\n" + JSON.stringify(error))} )
   }
 
-  private inProgress(yesno: boolean) {
-    //update UI Here
+  private inProgress(yesno: boolean) 
+  {
+    this.inProg = yesno
   }
 }

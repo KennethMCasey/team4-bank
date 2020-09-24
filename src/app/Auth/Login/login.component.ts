@@ -13,7 +13,7 @@ import { Role } from 'src/model/Role';
 
 export class LoginComponent implements OnInit
 {
-
+  inProg:boolean
   form: FormGroup;
   emailPattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
@@ -33,15 +33,18 @@ export class LoginComponent implements OnInit
 
   onSubmit() 
   {
+    this.inProg = true
     console.log('whoooaa' + this.form.get('Email').value);
     console.log(this.form.get('Password').value);
     this.authService.login(this.form.get('Email').value, this.form.get('Password').value).subscribe(
 
       (user) => {
+        this.inProg = false
         location.reload();
       },
 
       (error) => {
+        this.inProg = false
         alert('Invalid Login');
       }
     );

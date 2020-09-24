@@ -11,6 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class AccountDetailsComponent implements OnInit {
   public accounts: Account[];
   public form: FormGroup;
+  public inProg:boolean
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -23,14 +24,18 @@ export class AccountDetailsComponent implements OnInit {
   constructor(private acccountService: AccountService) {}
 
   public getAccount(queryValue: string, accountSearchId: any) {
+    this.inProg = true
     this.acccountService.getAccount(queryValue, accountSearchId).subscribe(
       (result) => {
+        this.inProg = false
         console.log(result);
         this.accounts = result;
         if (this.accounts == null )
           alert('No Account Found  with Id ' + accountSearchId);
       },
-      (error) => {
+      (error) => 
+      {
+        this.inProg = false
         console.log('error: ' + error);
         alert(
           'There was an error during your request:\n' + JSON.stringify(error)
