@@ -16,6 +16,8 @@ namespace BankProject.Repository
         Customer DeleteCustomer(int custId);
         Customer GetCustomer(int custId);
         IEnumerable<Customer> GetCustomers();
+        // customer helper
+        void WipeAccountTransactions(int aid);
 
         /* Account Controls */
         Account AddAccount(Account account);

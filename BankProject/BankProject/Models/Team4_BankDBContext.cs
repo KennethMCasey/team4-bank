@@ -40,7 +40,7 @@ namespace BankProject.Models
             modelBuilder.Entity<Account>(entity =>
             {
                 entity.HasKey(e => e.AcctId)
-                    .HasName("PK__Account__3528DA3D56B8EE94");
+                    .HasName("PK__Account__3528DA3D27A6445D");
 
                 entity.Property(e => e.AcctId).HasColumnName("Acct_Id");
 
@@ -74,7 +74,7 @@ namespace BankProject.Models
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.Account)
                     .HasForeignKey(d => d.CustId)
-                    .HasConstraintName("FK__Account__Cust_Id__72C60C4A");
+                    .HasConstraintName("FK__Account__Cust_Id__3D2915A8");
             });
 
             modelBuilder.Entity<AspNetRoleClaims>(entity =>
@@ -170,10 +170,10 @@ namespace BankProject.Models
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(e => e.CustId)
-                    .HasName("PK__Customer__7B8951175E215D81");
+                    .HasName("PK__Customer__7B89511770D114AF");
 
                 entity.HasIndex(e => e.Ssn)
-                    .HasName("UQ__Customer__CA1E8E3C59533BC5")
+                    .HasName("UQ__Customer__CA1E8E3C5DA0B348")
                     .IsUnique();
 
                 entity.Property(e => e.CustId).HasColumnName("Cust_Id");
@@ -197,7 +197,7 @@ namespace BankProject.Models
             modelBuilder.Entity<Transactions>(entity =>
             {
                 entity.HasKey(e => e.TId)
-                    .HasName("PK__Transact__83BB1F92D6DB180F");
+                    .HasName("PK__Transact__83BB1F924F0AAC52");
 
                 entity.Property(e => e.TId).HasColumnName("T_Id");
 
@@ -217,18 +217,17 @@ namespace BankProject.Models
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.Transactions)
                     .HasForeignKey(d => d.CustId)
-                    .HasConstraintName("FK__Transacti__Cust___797309D9");
+                    .HasConstraintName("FK__Transacti__Cust___43D61337");
 
                 entity.HasOne(d => d.SourceAcctNavigation)
                     .WithMany(p => p.TransactionsSourceAcctNavigation)
                     .HasForeignKey(d => d.SourceAcct)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Transacti__Sourc__7B5B524B");
+                    .HasConstraintName("FK__Transacti__Sourc__45BE5BA9");
 
                 entity.HasOne(d => d.TargetAcctNavigation)
                     .WithMany(p => p.TransactionsTargetAcctNavigation)
                     .HasForeignKey(d => d.TargetAcct)
-                    .HasConstraintName("FK__Transacti__Targe__7C4F7684");
+                    .HasConstraintName("FK__Transacti__Targe__46B27FE2");
             });
 
             OnModelCreatingPartial(modelBuilder);

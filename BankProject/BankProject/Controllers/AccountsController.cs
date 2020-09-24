@@ -67,11 +67,13 @@ namespace BankProject.Controllers
             l.Add(_repo.GetAccountByAccountId(aid));
             return l;
         }
+        
         [Authorize(Roles = UserRoles.Executive)]
         // DELETE api/Accounts/888
         [HttpDelete("{aid}")]
         public ActionResult<Account> DeleteAccountByAccountId(int aid)
         {
+            _repo.WipeAccountTransactions(aid);
             var account = _repo.DeleteAccountByAccountId(aid);
             if (account == null)
             {

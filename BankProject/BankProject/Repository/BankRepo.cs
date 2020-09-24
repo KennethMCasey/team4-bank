@@ -94,6 +94,23 @@ namespace BankProject.Repository
             return _context.Customer.ToList();
         }
 
+        // customer helpers
+        public void WipeAccountTransactions(int aid)
+        {
+            var markedTrans = _context.Transactions
+                .Where(t => t.SourceAcct == aid  || t.TargetAcct == aid)
+                .ToList();
+            foreach(Transactions t in markedTrans) 
+            {
+                t.SourceAcct =  t.SourceAcct == aid ? null : t.SourceAcct;
+                t.Amount = null;
+                t.TargetAcct = t.TargetAcct == aid ? null : t.TargetAcct;
+                _context.Update(t);
+            }
+             _context.SaveChanges();
+        }
+
+
         /* Account Controls */
         public Account AddAccount(Account account)
         {
@@ -196,18 +213,18 @@ namespace BankProject.Repository
             // transfer
             if (transaction.TargetAcct != null)
             {
-                var source = GetAccountByAccountId(transaction.SourceAcct);
+                var source = GetAccountByAccountId((int)transaction.SourceAcct);
                 source.Balance -= transaction.Amount;
                 var target = GetAccountByAccountId((int)transaction.TargetAcct);
                 target.Balance += transaction.Amount;
-                UpdateAccount(transaction.SourceAcct, source);
+                UpdateAccount((int)transaction.SourceAcct, source);
                 UpdateAccount((int)transaction.TargetAcct, target);
             }
             else // deposit or withdrawal
             {
-                var source = GetAccountByAccountId(transaction.SourceAcct);
+                var source = GetAccountByAccountId((int)transaction.SourceAcct);
                 source.Balance += transaction.Amount;
-                UpdateAccount(transaction.SourceAcct, source);
+                UpdateAccount((int)transaction.SourceAcct, source);
             }
             return transaction;
         }

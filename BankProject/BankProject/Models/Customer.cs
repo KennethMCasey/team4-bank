@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Text.Json.Serialization;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace BankProject.Models
 {
