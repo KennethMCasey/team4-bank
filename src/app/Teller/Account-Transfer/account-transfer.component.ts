@@ -66,7 +66,7 @@ export class AccountTransferComponent implements OnInit {
     console.log(this.transaction)
 
     this.transactionService.addTransaction(this.transaction).subscribe(
-       (success) => {console.log(success); this.inProgress(false); alert("The transaction has been posted successfully."); this.router.navigateByUrl('/') }, 
+       (success) => {console.log(success); this.inProgress(false); alert("The transaction has been posted successfully."); this.router.navigateByUrl('/Teller') }, 
        (error) => {console.log(error); this.inProgress(false); alert("There was an error:\n" + JSON.stringify(error))} )
   }
 

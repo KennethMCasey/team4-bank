@@ -52,7 +52,7 @@ export class AccountWithdrawComponent implements OnInit
     console.log(this.transaction)
 
     this.inProgress(true)
-    this.transactionService.addTransaction(this.transaction).subscribe( (success) => {this.inProgress(false); alert("The transaction has been posted successfully."); this.router.navigateByUrl('/') }, (error) => {this.inProgress(false); alert("There was an error:\n" + JSON.stringify(error))} )
+    this.transactionService.addTransaction(this.transaction).subscribe( (success) => {this.inProgress(false); alert("The transaction has been posted successfully."); this.router.navigateByUrl('/Teller') }, (error) => {this.inProgress(false); alert("There was an error:\n" + JSON.stringify(error))} )
   }
 
   private inProgress(yesno:boolean) 

@@ -60,7 +60,7 @@ export class CustomerUpdateComponent implements OnInit {
         console.log('response:' + response);
         this.operationInProgress(false);
         this.operationComplete(true, null);
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/Executive/Customer');
       },
       (error) => {
         console.log('error:' + error);

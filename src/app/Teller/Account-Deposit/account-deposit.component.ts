@@ -35,7 +35,7 @@ public getNewBalance()
     accountService.getAccount("Account ID" ,Number.parseInt(route.snapshot.paramMap.get('id'))).subscribe
     (
       (result) => {console.log(result); this.inProgress(false); this.account =  result[0]; },
-      (error) => {console.log(error); this.inProgress(false); alert("could not get account"); router.navigateByUrl("/")}
+      (error) => {console.log(error); this.inProgress(false); alert("could not get account"); router.navigateByUrl("/Teller")}
     )
   }
 

@@ -1,15 +1,53 @@
-<!-- NavBar-->
-<nav class="blue-grey">
-    <div class="nav-wrapper">
-    <a href="#" class="brand-logo center">Team4-Bank</a>
-    <ul id="nav-mobile" class="right hand-on-med-and-down">
-    <li>
-      <a routerLink="/Login">Logout</a>
-    </li>
-    </ul>
-    </div>
-</nav>
+<nav class="navbar navbar-expand-sm bg-dark blue-grey">
 
+  <!-- Links -->
+  <ul class="navbar-nav">
+
+    <a routerLink="/" class=" center navbar-brand">Team4-Bank</a>
+    
+    <li *ngIf="this.isTeller" class="nav-item">
+      <a class="nav-link" routerLink="/Teller/Statement">Account Statements</a>
+    </li>
+    <li *ngIf="this.isTeller" class="nav-item">
+      <a class="nav-link" routerLink="/Teller" >Account Details</a>
+    </li>
+
+    <!-- Dropdown -->
+    <li *ngIf="this.isAdmin" class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Account
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" routerLink="/Executive/Accounts">View All</a>
+        <a class="dropdown-item" routerLink="/Executive/Accounts/Create">Create</a>
+      </div>
+    </li>
+
+    <!-- Dropdown -->
+    <li *ngIf="this.isAdmin" class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Customer
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" routerLink="/Teller">View All</a>
+        <a class="dropdown-item" routerLink="/Teller/Create">Create</a>
+        <a class="dropdown-item" routerLink="/Teller/Update">Update</a>
+      </div>
+    </li>
+
+    
+  </ul>
+
+  <ul class="justify-content-end ml-auto">
+    <li class=" ml-auto navbar-right float-right text-right">
+      <a routerLink="/Login" >Logout</a>
+    </li>
+  </ul>
+
+  
+
+ 
+</nav>
 <router-outlet></router-outlet>
 
 <!-- Footer -->
@@ -17,4 +55,4 @@
     <div class="container-fluid">
       <p style="text-align:center">© Copyright 2020 Team4</p>
     </div>
-    </footer>
+</footer>

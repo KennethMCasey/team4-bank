@@ -50,7 +50,7 @@ export class AccountCreateComponent {
         console.log('response: ' + response);
         this.operationInProgress(false);
         this.operationComplete(true, null);
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/Executive/Account');
       },
       (error) => {
         console.log('error:' + error);

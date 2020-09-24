@@ -51,7 +51,7 @@ export class CustomerCreateComponent implements OnInit {
         console.log('result:' + result);
         this.operationInProgress(false);
         this.operationComplete(true, null);
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/Executive/Customer');
       },
       (error) => {
         console.log('error: ' + error);
