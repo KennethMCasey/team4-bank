@@ -31,7 +31,7 @@ export class CustomerService {
   //Edit one customer (5.1.3)
   editCustomer(putCustomer) {
     return this.httpClient.put(
-      `${this.apiEndpoint.Customers}${putCustomer.Cust_Id}`,
+      `${this.apiEndpoint.Customers}${putCustomer.custId}`,
       putCustomer,
       this.defaultOptions
     );
@@ -50,5 +50,11 @@ export class CustomerService {
  // Delete one customer (5.1.4)
   deleteCustomer(Cust_Id: number) {
     return this.httpClient.delete(`${this.apiEndpoint.Customers}${Cust_Id}`);
+  }
+
+  //api/Customers/Function/MostRecent
+  getCustomerUpdate(Cust_Id: number) {
+    console.log("customerservice getup date",Cust_Id);
+    return this.httpClient.get<Date>(`${this.apiEndpoint.Customers}Function/MostRecent/${Cust_Id}`);
   }
 }

@@ -17,17 +17,19 @@
                 <th>Customer ID</th>
                 <th>Account Type</th>
                 <th>Status</th>
-                <th>Message</th>
+                <th>Duration (hh:mm:ss:ms)</th>
                  <th>Last Updated</th>
             </tr>
            
             <tr *ngFor="let acc of this.accountList">
-                <td>{{ acc.Cust_Id }}</td>
-                <td>{{ acc.Acct_Type }}</td>
-                <td>LIVE</td>
-                <td>{{acc.TR_Last_Date}}</td>-->
+                <td>{{ acc.custId }}</td>
+                <td>{{ acc.acctType  == "C" ? "Checking" : "Savings"  }}</td>
+                <td> LIVE </td>
+                <td>  {{ acc.duration }} </td>
+                <td>{{ acc.trLastDate  == null ? acc.crDate : acc.trLastDate  }}</td>
+                
                 <td> 
-                    <button  class="btn btn-sm btn-outline-primary" (click)="deleteAccount(acc.Acct_Id)">Delete</button> 
+                    <button  class="btn btn-sm btn-outline-primary" (click)="deleteAccount(acc.acctId)">Delete</button> 
                 </td>
                 <td> 
                     <button  class="btn btn-sm btn-outline-primary" routerLink="/Executive/Account">Refresh</button> 

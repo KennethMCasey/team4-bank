@@ -21,6 +21,7 @@ export class TransactionService {
 
   //Add a Account (5.2.2)(5.2.3)(5.2.4)
   addTransaction(postTransaction) {
+    console.log(JSON.stringify(postTransaction));
     return this.httpClient.post(
       this.apiEndpoint.Transactions,
       postTransaction,

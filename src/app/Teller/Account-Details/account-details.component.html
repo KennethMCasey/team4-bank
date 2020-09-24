@@ -16,13 +16,13 @@
      <label for="role">Choose ID</label>
                 <select formControlName="Id_Type" class="form-control">
                     <option>Customer ID</option>
-                    <option>SSN ID</option>
+                    <option>SSN</option>
                     <option>Account ID</option>
                 </select>
             </div>
     <div class="row">
     <div class="input-field col s12">
-    <input formControlName="id" type="number" name="id" ngModel pattern="[0-9]{9}">
+    <input formControlName="id" type="text" name="id" ngModel pattern="[0-9]{9}">
     <div *ngIf="form.get('id').invalid && form.get('id').touched" class="alert alert-danger">
         <div *ngIf="form.get('id').errors.required"> ID is required.</div>
         <div *ngIf="form.get('id').errors.pattern"> ID should be a 9 digit number.</div>
@@ -32,11 +32,12 @@
     </div>
     <div class="row">
     <div class="input-field col s12">
-    <button class="btn-large btn-submit" type="submit" [disabled]="!registerForm.valid">View</button>
-    
+        <button class="btn-large btn-submit" type="submit" [disabled]="!registerForm.valid">View</button>
     </div>
+
     </div>
     </form>
+    
     </div>
     </div>
     </div>
@@ -52,20 +53,23 @@
                     <th>Balance</th>
                 </tr>
                 <tr *ngFor="let account of accounts">
-                    <td>{{ account.Cust_Id }}</td>
-                    <td>{{ account.Acct_Id }}</td>
-                    <td>{{ account.Acct_Type }}</td>
-                    <td>{{ account.Balance}}</td>
+                    <td>{{ account.custId }}</td>
+                    <td>{{ account.acctId }}</td>
+                    <td>{{ account.acctType == "C" ? "Checking" : "Savings" }}</td>
+                    <td>{{ account.balance}}</td>
                     <td> 
-                        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Deposit/{{account.Acct_Id}}">Deposit</button> 
+                        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Deposit/{{account.acctId}}">Deposit</button> 
                     </td>
                     <td> 
-                        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Withdraw/{{account.Acct_Id}}">Withdraw</button> 
+                        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Withdraw/{{account.acctId}}">Withdraw</button> 
                     </td>
                     <td> 
-                        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Transfer/{{account.Acct_Id}}">Transfer</button> 
+                        <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller/Transfer/{{account.acctId}}">Transfer</button> 
                     </td>
                 </tr>
+                <div *ngIf="accounts == null || accounts.length == 0">
+                    <p>No accounts found!</p>
+                </div>
         </table>
         <hr>
     </div>

@@ -22,16 +22,19 @@
             </tr>
             <!--Code to be added-->
             <tr *ngFor="let customer of this.customerList">
-                <td>{{ customer.SSN }}</td>
+                <td>{{ customer.ssn }}</td>
                 <td>LIVE</td>
                 <td>
-                Name: {{customer.Name}}    
-                Address: {{ customer.Address }}
-                Age: {{customer.Age}}
+                Name: {{customer.name}}  <br>  
+                Address: {{ customer.address }}  <br>
+                Age: {{customer.age}}
                 </td>
-                <td>{{getLastUpdated(customer.Cust_Id)}}</td>
+                <!-- <td>{{getLastUpdated(customer.custId)}}</td>  -->
+                <td>
+                    No Activity
+                </td>
                 <td> 
-                    <button  class="btn btn-sm btn-outline-primary" routerLink="">Delete</button> 
+                    <button  class="btn btn-sm btn-outline-danger" (click)="onDelete(customer.custId)">Delete</button> 
                 </td>
                 <td> 
                     <button  class="btn btn-sm btn-outline-primary" routerLink="/Executive/Customer">Refresh</button> 

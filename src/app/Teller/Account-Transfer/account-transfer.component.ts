@@ -39,8 +39,8 @@ export class AccountTransferComponent implements OnInit {
   public transaction: Transactions
 
   public getNewBalance(str: string) {
-    if (str == "source") return this.sourceAccount.Balance - (Number.isNaN(Number.parseInt(this.form.get('amount').value)) ? 0 : Number.parseInt(this.form.get('amount').value))
-    if (str == "target") return this.sourceAccount.Balance + (Number.isNaN(Number.parseInt(this.form.get('amount').value)) ? 0 : Number.parseInt(this.form.get('amount').value))
+    if (str == "source") return this.sourceAccount.balance - (Number.isNaN(Number.parseInt(this.form.get('amount').value)) ? 0 : Number.parseInt(this.form.get('amount').value))
+    if (str == "target") return this.sourceAccount.balance + (Number.isNaN(Number.parseInt(this.form.get('amount').value)) ? 0 : Number.parseInt(this.form.get('amount').value))
   }
 
 
@@ -51,16 +51,7 @@ export class AccountTransferComponent implements OnInit {
         (error) => {
           console.log("error: " + error)
           alert("could not get account, go back here")
-          this.targetAccount =
-          {
-            Acct_Id: 66,
-            Cust_Id: 66,
-            Acct_Type: "saving",
-            Balance: 66,
-            CR_Date: "8",
-            TR_Last_Date: "8",
-            Duration: 8
-          }
+       
         }
       )
 
@@ -69,9 +60,9 @@ export class AccountTransferComponent implements OnInit {
     if (this.sourceAccount == null) {alert("fatal error: source account null"); return}
     this.inProgress(true)
     this.transaction = new Transactions()
-    this.transaction.Source_Acct = this.sourceAccount.Acct_Id
-    this.transaction.Target_Acct = this.form.get('target').value
-    this.transaction.Amount = this.form.get('amount').value
+    this.transaction.sourceAcct = this.sourceAccount.acctId
+    this.transaction.targetAcct = this.form.get('target').value
+    this.transaction.amount = this.form.get('amount').value
     console.log(this.transaction)
 
     this.transactionService.addTransaction(this.transaction).subscribe(

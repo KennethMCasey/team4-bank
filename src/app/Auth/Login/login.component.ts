@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/service/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Role } from 'src/model/Role';
 
 
 @Component({
@@ -12,9 +14,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit
 {
 
+  
   form: FormGroup;
   emailPattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-  constructor(private authService: AuthenticationService ) {  }
+  constructor(private authService: AuthenticationService, private router:Router ) {  }
 
   ngOnInit(){
     this.form = new FormGroup({
@@ -27,7 +30,16 @@ export class LoginComponent implements OnInit
   {
     console.log('whoooaa' + this.form.get('Email').value);
     console.log(this.form.get('Password').value);
-    this.authService.login(this.form.get('Email').value, this.form.get('Password').value).subscribe()
+    this.authService.login(this.form.get('Email').value, this.form.get('Password').value).subscribe(
+
+      (user) => {
+        this.router.navigateByUrl('/');
+      },
+
+      (error) => {
+        alert('Invalid Login');
+      }
+    );
   }
   
 }

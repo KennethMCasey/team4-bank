@@ -27,7 +27,7 @@ export class AccountDepositComponent
 
 public getNewBalance()
 {
-  return this.account.Balance + ( Number.isNaN(Number.parseInt(this.form.get('amount').value))? 0 : Number.parseInt(this.form.get('amount').value))
+  return this.account.balance + ( Number.isNaN(Number.parseInt(this.form.get('amount').value))? 0 : Number.parseInt(this.form.get('amount').value))
 }
   constructor(private transactionService:TransactionService, private router:Router, private accountService:AccountService, private route:ActivatedRoute) 
   {
@@ -45,9 +45,9 @@ public getNewBalance()
   {
     this.inProgress(true)
     this.transaction = new Transactions()
-    this.transaction.Amount = this.form.get('amount').value
-    this.transaction.Cust_Id = this.account.Cust_Id
-    this.transaction.Source_Acct = this.account.Acct_Id
+    this.transaction.amount = this.form.get('amount').value
+    this.transaction.custId = this.account.custId
+    this.transaction.sourceAcct = this.account.acctId
     console.log(this.transaction)
 
     this.transactionService.addTransaction(this.transaction).subscribe( 
@@ -57,6 +57,6 @@ public getNewBalance()
 
   private inProgress(yesno:boolean) 
   {
-    //update UI Here
+    //TODO: update UI Here
   }
 }

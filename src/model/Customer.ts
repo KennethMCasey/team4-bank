@@ -1,8 +1,8 @@
 export class Customer 
 {
-public SSN:string
-public Cust_Id:number
-public Name:string
-public Address:string
-public Age:number
+public ssn: string
+public custId:number
+public name:string
+public address:string
+public age:number
 }

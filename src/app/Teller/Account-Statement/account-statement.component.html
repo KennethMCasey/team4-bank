@@ -86,13 +86,14 @@
                 <th>Balance</th>
             </tr>
             <tr *ngFor="let transaction of this.transactions">
-                <td>{{ transaction.Tran_Date }}</td>
-                <td>Source Account:{{ transaction.Source_Acct }} Target Account: {{transaction.Target_Acct}}</td>
-                <td>{{ transaction.Amount }}</td>
+                <td>{{ transaction.tranDate }}</td>
+                <td>
+                    Source Account: {{ transaction.sourceAcct }} <br> 
+                    Target Account: {{ transaction.targetAcct}} <br>
+                </td>
+                <td>{{ transaction.amount }}</td>
             </tr>    
         </table>
         <button  class="btn btn-sm btn-outline-primary" routerLink="/Teller">Back</button> 
         <hr>
     </div>
-    
-      

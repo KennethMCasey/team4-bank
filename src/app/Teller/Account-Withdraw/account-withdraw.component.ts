@@ -28,7 +28,7 @@ export class AccountWithdrawComponent implements OnInit
 
   public getNewBalance()
 {
-  return this.account.Balance - ( Number.isNaN(Number.parseInt(this.form.get('amount').value))? 0 : Number.parseInt(this.form.get('amount').value))
+  return this.account.balance - ( Number.isNaN(Number.parseInt(this.form.get('amount').value))? 0 : Number.parseInt(this.form.get('amount').value))
 }
 
   constructor(private transactionService:TransactionService, private router:Router, private accountService:AccountService, private route:ActivatedRoute) 
@@ -46,9 +46,9 @@ export class AccountWithdrawComponent implements OnInit
   public postTransaction() 
   {
     this.transaction = new Transactions()
-    this.transaction.Source_Acct = this.account.Acct_Id
-    this.transaction.Cust_Id = this.account.Cust_Id
-    this.transaction.Amount = this.form.get('amount').value
+    this.transaction.sourceAcct = this.account.acctId
+    this.transaction.custId = this.account.custId
+    this.transaction.amount = -1 * this.form.get('amount').value
     console.log(this.transaction)
 
     this.inProgress(true)

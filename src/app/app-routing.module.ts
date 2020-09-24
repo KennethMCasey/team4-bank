@@ -65,7 +65,7 @@ const routes: Routes = [
     path: 'Executive/Customer',
     component: CustomerMasterComponent,
     canActivate: [AuthGuard],
-    data: { roles: [Role.Executive] }
+    data: { roles: [Role.Executive], newprop: "astring" }
   },
   {
     path: 'Executive/Customer/Create',
@@ -83,7 +83,7 @@ const routes: Routes = [
   { path: 'Login', component: LoginComponent },
   { path: 'Sign-Up', component: SignupComponent },
   { path: '', component: HomeComponent },
-  { path: '**', component: FourOhFourComponent },
+  { path: '**', component: FourOhFourComponent }
 ];
 
 @NgModule({
