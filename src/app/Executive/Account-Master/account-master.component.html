@@ -7,32 +7,29 @@
 
    <!--Heading-->
 <div class="brand-logo center">
-    <h3>View Account </h3> <div ngIf="this.inProg" class="spinner-border"></div>
+    <h3>View Account </h3> <div *ngIf="this.inProg" class="spinner-border"></div>
     </div>
     <!--View-->
     <!--Display the 3 buttons -->
     <div class="container-fluid">
         <table>
             <tr>
+                <th>Account ID</th>
                 <th>Customer ID</th>
                 <th>Account Type</th>
-                <th>Status</th>
-                <th>Duration (hh:mm:ss:ms)</th>
+                <th>Account Age (hrs:mm:ss:ms)</th>
                  <th>Last Updated</th>
             </tr>
            
             <tr *ngFor="let acc of this.accountList">
+                <td>{{ acc.acctId }}</td>
                 <td>{{ acc.custId }}</td>
                 <td>{{ acc.acctType  == "C" ? "Checking" : "Savings"  }}</td>
-                <td> LIVE </td>
-                <td>  {{ acc.duration }} </td>
-                <td>{{ acc.trLastDate  == null ? acc.crDate : acc.trLastDate  }}</td>
+                <td>{{ acc.duration }}</td>
+                <td>{{ acc.trLastDate  == null ? acc.crDate.replace("T"," ") : acc.trLastDate.replace("T","\n")  }}</td>
                 
                 <td> 
                     <button  class="btn btn-sm btn-outline-primary" (click)="deleteAccount(acc.acctId)">Delete</button> 
-                </td>
-                <td> 
-                    <button  class="btn btn-sm btn-outline-primary" routerLink="/Executive/Account">Refresh</button> 
                 </td>
             </tr>
         </table>

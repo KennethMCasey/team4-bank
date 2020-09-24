@@ -70,8 +70,9 @@ export class CustomerCreateComponent implements OnInit {
   private operationComplete(success: Boolean, message: string) {
     alert(
       'The Operation Was ' +
-        (success ? '' : 'Not ' + 'Successful.') +
-        (message == null ? '' : '\nInfo: ' + message)
+        (success ? '' : 'Not ') + 'Successful.'
+        // +(message == null ? '' : '\nInfo: ' + message
+      
     );
   }
 }

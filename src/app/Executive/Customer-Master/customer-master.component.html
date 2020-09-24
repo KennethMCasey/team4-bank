@@ -4,43 +4,45 @@
 <p>On this screen the delete function will also exist.</p>
 <p>Status for all of the Customers will be here as well </p>-->
 
-    <!--Heading-->
+<!--Heading-->
 <div class="brand-logo center">
-    <h3>View Customer</h3><div ngIf="this.inProg" class="spinner-border"></div>
-    </div>
-    <!--View-->
-    <!--Display the 3 buttons -->
-    <div class="container-fluid">
-        <table>
-            <tr>
-                <th>SSN ID</th>
-                <th>Status</th>
-                <th>Message</th>
-                <th>Last Updated</th>
-                <th>Delete</th>
-                <th>Refresh</th>
-            </tr>
-            <!--Code to be added-->
-            <tr *ngFor="let customer of this.customerList">
-                <td>{{ customer.ssn }}</td>
-                <td>LIVE</td>
-                <td>
-                Name: {{customer.name}}  <br>  
-                Address: {{ customer.address }}  <br>
-                Age: {{customer.age}}
-                </td>
-                <!-- <td>{{getLastUpdated(customer.custId)}}</td>  -->
-                <td>
-                    No Activity
-                </td>
-                <td> 
-                    <button  class="btn btn-sm btn-outline-danger" (click)="onDelete(customer.custId)">Delete</button> 
-                </td>
-                <td> 
+  <h3>View Customer</h3>
+  <div *ngIf="this.inProg" class="spinner-border"></div>
+</div>
+<!--View-->
+<!--Display the 3 buttons -->
+<div class="container-fluid">
+  <table>
+    <tr>
+      <th>SSN ID</th>
+      <!-- <th>Status</th> -->
+      <th>Name</th>
+      <th>Age</th>
+      <th>Address</th>
+      <!-- <th>Last Updated</th> -->
+      <!-- <th>Refresh</th> -->
+    </tr>
+    <!--Code to be added-->
+    <tr *ngFor="let customer of this.customerList">
+      <td>{{ customer.ssn }}</td>
+      <!-- <td>LIVE</td> -->
+      <td>{{ customer.name }}</td>
+      <td>{{ customer.age }}</td>
+      <td>{{ customer.address }}</td>
+      <!-- <td>{{getLastUpdated(customer.custId)}}</td>  -->
+      <!-- <td>No Activity</td> -->
+      <td>
+        <button
+          class="btn btn-sm btn-outline-danger"
+          (click)="onDelete(customer.custId)"
+        >
+          Delete
+        </button>
+      </td>
+      <!-- <td> 
                     <button  class="btn btn-sm btn-outline-primary" routerLink="/Executive/Customer">Refresh</button> 
-                </td>
-                 </tr>
-        </table>
-        <hr>
-    </div>
-    
+                </td> -->
+    </tr>
+  </table>
+  <hr />
+</div>

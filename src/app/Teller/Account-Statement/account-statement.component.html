@@ -9,7 +9,7 @@
 
     <!--Heading-->
     <div class="brand-logo center">
-    <h3>Get Statements</h3><div ngIf="this.inProg" class="spinner-border"></div>
+    <h3>Get Statements</h3><div *ngIf="this.inProg" class="spinner-border"></div>
     </div>
     <!--Form-->
     <div class="container">
@@ -96,14 +96,22 @@
             </tr>
             <tr *ngFor="let transaction of this.transactions">
                 <td>{{ transaction.tranDate.replace("T", " ") }}</td>
-                <td *ngIf="transaction.targetAcct == null">
+                <!-- Case: Transaction Deleted -->
+                <td *ngIf="transaction.amount == null">
+                    DELETED
+                </td>
+                <!-- Case: Withdrawal/Deposit -->
+                <td *ngIf="transaction.amount != null && transaction.targetAcct == null">
                     {{transaction.amount >= 0 ? "Deposit" : "Withdrawal"}}
                 </td>
-                <td *ngIf="transaction.targetAcct != null">
+                <!-- Case: Transfer -->
+                <td *ngIf="transaction.amount != null  && transaction.targetAcct != null">
                     Source Account: {{ transaction.sourceAcct }} <br> 
                     Target Account: {{ transaction.targetAcct }} <br>
                 </td>
-                <td>${{ transaction.amount }}</td>
+
+                <td *ngIf="transaction.amount == null"> -- </td>
+                <td *ngIf="transaction.amount != null">${{ transaction.amount }}</td>
             </tr>    
         </table>
         <hr>

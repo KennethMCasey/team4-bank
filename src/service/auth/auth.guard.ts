@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
             if (route.data.roles && route.data.roles.indexOf(currentUser.Role) === -1) {
                 // role not authorised so redirect to home page? or login page? error?
                 //  TODO: probably home page with a message
-                console.log(currentUser.Role + " wrong role. going home");
+                console.log(currentUser.Role + " role. going home");
                 this.router.navigate(['/']);
                 return false;
             }
@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
 
         // not logged in so redirect to login page with the return url
         // TODO: replace with name of actual login route
-        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+        this.router.navigate(['/Login']);
         return false;
     }
 }
