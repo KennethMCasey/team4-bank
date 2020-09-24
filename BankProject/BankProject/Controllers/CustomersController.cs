@@ -24,6 +24,14 @@ namespace BankProject.Controllers
             _repo = repo;
         }
 
+        // GET: api/Customers/Function/MostRecent
+        [HttpGet("Function/MostRecent/{cid:int}")]
+        public DateTime? GetCustomerUpdate(int cid)
+        {
+            return _repo.GetCustomerUpdate(cid);
+        }
+
+
         // GET: api/Customers
         [HttpGet]
         public IEnumerable<Customer> GetCustomers()

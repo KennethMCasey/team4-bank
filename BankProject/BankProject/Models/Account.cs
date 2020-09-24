@@ -5,16 +5,17 @@ namespace BankProject.Models
 {
     public partial class Account
     {
-        public Account(int cid, string acctType, decimal? balance)
-        {
-            CustId = cid;
-            AcctType = acctType;
-            Balance = balance;
-        }
         public Account()
         {
             TransactionsSourceAcctNavigation = new HashSet<Transactions>();
             TransactionsTargetAcctNavigation = new HashSet<Transactions>();
+        }
+
+        public Account(int custId, string acctType, decimal? balance)
+        {
+            CustId = custId;
+            AcctType = acctType;
+            Balance = balance;
         }
 
         public int AcctId { get; set; }

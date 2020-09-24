@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BankProject.Controllers
 {
-    [Authorize(Roles = UserRoles.Cashier)]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TransactionsController : ControllerBase

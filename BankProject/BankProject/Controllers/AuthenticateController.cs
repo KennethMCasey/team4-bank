@@ -32,7 +32,6 @@ namespace JWTAuthentication.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            Console.WriteLine(model.Email);
             var user = await userManager.FindByEmailAsync(model.Email);
             if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
             {
@@ -91,6 +90,14 @@ namespace JWTAuthentication.Controllers
                     new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." 
                 });
 
+            if (!await roleManager.RoleExistsAsync(UserRoles.Teller))
+                await roleManager.CreateAsync(new IdentityRole(UserRoles.Teller));
+                
+            if (await roleManager.RoleExistsAsync(UserRoles.Teller))
+            {
+                await userManager.AddToRoleAsync(user, UserRoles.Teller);
+            }
+
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
 
@@ -114,9 +121,6 @@ namespace JWTAuthentication.Controllers
 
             if (!await roleManager.RoleExistsAsync(UserRoles.Executive))
                 await roleManager.CreateAsync(new IdentityRole(UserRoles.Executive));
-
-            if (!await roleManager.RoleExistsAsync(UserRoles.Cashier))
-                await roleManager.CreateAsync(new IdentityRole(UserRoles.Cashier));
 
             if (await roleManager.RoleExistsAsync(UserRoles.Executive))
             {

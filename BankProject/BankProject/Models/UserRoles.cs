@@ -8,6 +8,6 @@ namespace BankProject.Models
     public static class UserRoles
     {
         public const string Executive = "Executive";
-        public const string Cashier = "Cashier";
+        public const string Teller = "Teller";
     }
 }

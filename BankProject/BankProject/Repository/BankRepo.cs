@@ -2,15 +2,18 @@
 using BankProject.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace BankProject.Repository
 {
     public class BankRepo : IBankRepo
     {
-        
+
         private readonly Team4_BankDBContext _context;
 
         /* Constructor */
@@ -20,6 +23,23 @@ namespace BankProject.Repository
         }
 
         /* Customer Controls */
+
+
+        public DateTime? GetCustomerUpdate(int cid)
+        {
+            //         	@custId int,
+            // @mostRecentDate datetime OUT
+            SqlParameter[] @params = {
+                new SqlParameter("@custId", cid)
+            };
+
+
+            _context.Database.ExecuteSqlCommand(
+                "exec @returnVal= dbo.sp_getLastTransactionDateForCustomer @custId", @params);
+            Console.WriteLine((DateTime)@params[0].Value);
+            return (DateTime)@params[0].Value; //result is 29 
+            //return _context.Database.SqlQuery<DateTime>("sp_getLastTransactionDateForCustomer", cid);
+        }
 
         public Customer AddCustomer(Customer customer)
         {
@@ -101,7 +121,7 @@ namespace BankProject.Repository
             }
             return (int)ReturnCode.NO_CONTENT;
         }
-        
+
 
         public Account DeleteAccountByAccountId(int acctId)
         {
@@ -199,11 +219,11 @@ namespace BankProject.Repository
                 .AsEnumerable();
         }
 
-        public IEnumerable<Transactions> GetLastNTransactions(int aid, int n) 
+        public IEnumerable<Transactions> GetLastNTransactions(int aid, int n)
         {
             // want to get the N most recent transactions
             return _context.Transactions
-                    .Where( t => t.SourceAcct == aid || t.TargetAcct == aid )
+                    .Where(t => t.SourceAcct == aid || t.TargetAcct == aid)
                     .OrderByDescending(t => t.TranDate)
                     .Take(n)
                     .ToList();
@@ -213,7 +233,7 @@ namespace BankProject.Repository
         {
             // want to get the most recent transactions in range startN to endN
             return _context.Transactions
-                    .Where( t => t.SourceAcct == aid || t.TargetAcct == aid )
+                    .Where(t => t.SourceAcct == aid || t.TargetAcct == aid)
                     .OrderByDescending(t => t.TranDate)
                     .Skip(startN - 1)
                     .Take(endN - startN + 1)
@@ -222,12 +242,12 @@ namespace BankProject.Repository
 
         // returns transactions involving this account
         // from startDate to endDate inclusive
-        public IEnumerable<Transactions> GetTransactionsInDateRange(int aid, DateTime startDate, DateTime endDate) 
+        public IEnumerable<Transactions> GetTransactionsInDateRange(int aid, DateTime startDate, DateTime endDate)
         {
             return _context.Transactions
-                    .Where(t => 
-                        ( t.SourceAcct == aid || t.TargetAcct == aid )
-                        && startDate <= t.TranDate 
+                    .Where(t =>
+                        (t.SourceAcct == aid || t.TargetAcct == aid)
+                        && startDate <= t.TranDate
                         && t.TranDate <= endDate
                     ).ToList();
         }

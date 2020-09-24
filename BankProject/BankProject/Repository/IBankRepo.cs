@@ -10,6 +10,7 @@ namespace BankProject.Repository
     public interface IBankRepo
     {
         /* Customer Controls */
+        DateTime? GetCustomerUpdate(int cid);
         Customer AddCustomer(Customer customer);
         int UpdateCustomer(int custId, Customer customer);
         Customer DeleteCustomer(int custId);

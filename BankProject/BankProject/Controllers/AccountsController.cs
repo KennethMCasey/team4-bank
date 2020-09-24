@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,14 +60,16 @@ namespace BankProject.Controllers
 
 
         // GET https://banks4you.com/api/Accounts/aid/888
-        [HttpGet("aid/{aid:range(100000000, 1000000000)}")]
-        public Account GetAccountByAccountId(int aid)
+        [HttpGet("aid/{aid:range(0, 1000000000)}")]
+        public IEnumerable<Account> GetAccountByAccountId(int aid)
         {
-            return _repo.GetAccountByAccountId(aid);
+            var l =  new List<Account>();
+            l.Add(_repo.GetAccountByAccountId(aid));
+            return l;
         }
         [Authorize(Roles = UserRoles.Executive)]
-        // DELETE api/Accounts/aid/888
-        [HttpDelete("aid/{aid}")]
+        // DELETE api/Accounts/888
+        [HttpDelete("{aid}")]
         public ActionResult<Account> DeleteAccountByAccountId(int aid)
         {
             var account = _repo.DeleteAccountByAccountId(aid);
